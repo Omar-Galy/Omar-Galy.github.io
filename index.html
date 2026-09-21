@@ -81,10 +81,7 @@
   }
   .btn-primary { background: var(--accent); color: var(--on-accent); border: 1px solid var(--accent); }
   .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
-  .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
-  .btn-secondary:hover { border-color: var(--text-2); }
   .btn svg { width: 18px; height: 18px; flex: none; }
-  html[lang="ar"] .btn svg.dir { transform: scaleX(-1); }
 
   /* Hero */
   .hero { padding-block: 80px 72px; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 56px; align-items: center; }
@@ -108,7 +105,7 @@
   .lead { color: var(--text-2); margin: 0 0 36px; max-width: 40em; }
   #work h2 { margin-bottom: 28px; }
 
-  .services { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
   @media (max-width: 880px) { .services { grid-template-columns: 1fr; } }
   .service { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
   .service svg { width: 24px; height: 24px; color: var(--accent); margin-bottom: 14px; }
@@ -171,17 +168,13 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           <span data-lang="en">Email me</span><span data-lang="ar">ابعتلي إيميل</span>
         </a>
-        <a class="btn btn-secondary" href="#work">
-          <span data-lang="en">See the demo project</span><span data-lang="ar">شوف المشروع التجريبي</span>
-          <svg class="dir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
       </div>
     </div>
 
     <dl class="facts">
       <div><dt><span data-lang="en">Based in</span><span data-lang="ar">المكان</span></dt><dd><span data-lang="en">Mansoura, Egypt</span><span data-lang="ar">المنصورة، مصر</span></dd></div>
       <div><dt><span data-lang="en">Languages</span><span data-lang="ar">اللغات</span></dt><dd><span data-lang="en">Arabic, English</span><span data-lang="ar">العربي، الإنجليزي</span></dd></div>
-      <div><dt><span data-lang="en">Works with</span><span data-lang="ar">الأدوات</span></dt><dd>WhatsApp Cloud API, n8n, Supabase, Flutter</dd></div>
+      <div><dt><span data-lang="en">Works with</span><span data-lang="ar">الأدوات</span></dt><dd>WhatsApp Cloud API, n8n, Supabase</dd></div>
       <div><dt><span data-lang="en">Email</span><span data-lang="ar">الإيميل</span></dt><dd><a href="mailto:galy.automation@gmail.com">galy.automation@gmail.com</a></dd></div>
     </dl>
   </div>
@@ -200,11 +193,6 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M7 10v4a3 3 0 0 0 3 3h4"/></svg>
           <h3><span data-lang="en">Automations</span><span data-lang="ar">أتمتة</span></h3>
           <p><span data-lang="en">n8n workflows and Supabase databases that move information between your tools without manual work.</span><span data-lang="ar">workflows على n8n وقواعد بيانات Supabase بتنقل البيانات بين أدواتك من غير شغل يدوي.</span></p>
-        </div>
-        <div class="service">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
-          <h3><span data-lang="en">Mobile apps</span><span data-lang="ar">تطبيقات موبايل</span></h3>
-          <p><span data-lang="en">Android apps built with Flutter, including turning an existing website into an app.</span><span data-lang="ar">تطبيقات أندرويد بـ Flutter، ومنها تحويل موقع موجود لتطبيق.</span></p>
         </div>
       </div>
     </div>
