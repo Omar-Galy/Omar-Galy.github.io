@@ -3,221 +3,95 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Galy AI — Omar Galy</title>
-<meta name="description" content="Omar Galy builds WhatsApp and website chatbots and the automations behind them. Based in Mansoura, Egypt.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f5c4a'/%3E%3Ctext x='32' y='44' font-family='Arial' font-weight='700' font-size='34' fill='white' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
+<title>Omar Galy</title>
+<meta name="description" content="Omar Galy builds WhatsApp chatbots and automations for small businesses. Mansoura, Egypt.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f7f5f0;
-    --surface: #ffffff;
-    --ink: #1c1f1e;
-    --muted: #5d6461;
-    --line: #e2ddd3;
-    --accent: #0f5c4a;
-    --accent-soft: #e3efe9;
-    --bubble-in: #ffffff;
-    --bubble-out: #dcf3e6;
-    --chat-bg: #efe9df;
+    --paper: #fbfaf7;
+    --ink: #222120;
+    --soft: #6f6b66;
+    --link: #1f3f8f;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #121514;
-      --surface: #1a1e1d;
-      --ink: #e9ece9;
-      --muted: #9aa39f;
-      --line: #2a302e;
-      --accent: #5cc7a5;
-      --accent-soft: #1d2d28;
-      --bubble-in: #232a28;
-      --bubble-out: #1f3b31;
-      --chat-bg: #161a19;
-    }
+    :root { --paper: #191817; --ink: #e6e3de; --soft: #9a958e; --link: #9db5ee; }
   }
-  * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background: var(--bg);
+    background: var(--paper);
     color: var(--ink);
-    font-family: "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif;
-    font-size: 17px;
-    line-height: 1.65;
+    font-family: "Newsreader", "Noto Naskh Arabic", Georgia, serif;
+    font-size: 20px;
+    line-height: 1.6;
   }
-  a { color: var(--accent); }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  html[lang="ar"] body { font-size: 19px; line-height: 1.9; }
+  a { color: var(--link); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .page { max-width: 34rem; margin: 0 auto; padding: 72px 20px 56px; }
+  @media (max-width: 560px) { .page { padding-top: 40px; } body { font-size: 18px; } }
 
-  /* Language: English is the default and shows without JavaScript. */
   [data-lang="ar"] { display: none; }
   html[lang="ar"] [data-lang="en"] { display: none; }
   html[lang="ar"] [data-lang="ar"] { display: revert; }
-  html[lang="ar"] body { line-height: 1.8; }
 
-  header { border-bottom: 1px solid var(--line); }
-  .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
-  .mark { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none; }
-  .mark i { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: var(--accent); color: var(--bg); font-style: normal; font-size: 17px; }
-  nav { display: flex; align-items: center; gap: 22px; }
-  nav a { color: var(--muted); text-decoration: none; font-size: 15px; }
-  nav a:hover { color: var(--ink); }
-  .lang { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 6px 14px; font: inherit; font-size: 14px; cursor: pointer; }
-  @media (max-width: 640px) { nav a { display: none; } }
-
-  .hero { padding-block: 72px 56px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
-  @media (max-width: 860px) { .hero { grid-template-columns: 1fr; padding-block-start: 48px; } }
-  .eyebrow { color: var(--accent); font-weight: 600; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; margin: 0 0 14px; }
-  html[lang="ar"] .eyebrow { letter-spacing: 0; text-transform: none; }
-  h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.15; margin: 0 0 18px; letter-spacing: -.01em; }
-  html[lang="ar"] h1 { line-height: 1.35; letter-spacing: 0; }
-  .lede { color: var(--muted); font-size: 19px; margin: 0 0 28px; max-width: 34em; }
-  .cta { display: inline-block; background: var(--accent); color: var(--bg); text-decoration: none; font-weight: 600; padding: 12px 22px; border-radius: 10px; }
-  .cta + .cta-note { display: block; margin-top: 12px; color: var(--muted); font-size: 14px; }
-
-  /* The chat mock-up shows the real confirm-before-save flow of the demo. */
-  .phone { background: var(--chat-bg); border: 1px solid var(--line); border-radius: 22px; padding: 18px 14px; direction: rtl; font-size: 15px; }
-  .phone .who { text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 12px; direction: ltr; }
-  .msg { max-width: 82%; padding: 9px 12px; border-radius: 12px; margin: 8px 0; line-height: 1.6; }
-  .msg.in { background: var(--bubble-out); margin-inline-start: auto; border-start-end-radius: 4px; }
-  .msg.bot { background: var(--bubble-in); border-start-start-radius: 4px; }
-  .msg .btn { display: block; margin-top: 8px; padding: 7px; text-align: center; border-top: 1px solid var(--line); color: var(--accent); font-weight: 600; }
-  .msg small { color: var(--muted); }
-
-  section { padding: 56px 0; border-top: 1px solid var(--line); }
-  h2 { font-size: 28px; margin: 0 0 8px; }
-  .sub { color: var(--muted); margin: 0 0 32px; max-width: 40em; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
-  .card h3 { margin: 0 0 8px; font-size: 18px; }
-  .card p { margin: 0; color: var(--muted); font-size: 15.5px; }
-
-  .work { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
-  @media (max-width: 860px) { .work { grid-template-columns: 1fr; } }
-  .tag { display: inline-block; background: var(--accent-soft); color: var(--accent); font-size: 13px; font-weight: 600; padding: 3px 10px; border-radius: 999px; margin-bottom: 12px; }
-  .work ul { padding-inline-start: 20px; margin: 16px 0; color: var(--muted); }
-  .notice { border-inline-start: 3px solid var(--accent); padding: 4px 16px; color: var(--muted); font-size: 15.5px; }
-
-  .principle { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 28px; }
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; counter-reset: s; }
-  @media (max-width: 700px) { .steps { grid-template-columns: 1fr; } }
-  .steps div { counter-increment: s; }
-  .steps div::before { content: counter(s); display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 700; margin-bottom: 8px; }
-  .steps p { margin: 0; color: var(--muted); font-size: 15.5px; }
-
-  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
-  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  .switch { float: inline-end; font-size: 16px; }
+  h1 { font-size: 30px; font-weight: 500; margin: 0 0 2px; }
+  .meta { color: var(--soft); margin: 0 0 40px; font-size: 17px; }
+  h2 { font-size: 20px; font-weight: 500; font-style: italic; margin: 48px 0 12px; }
+  html[lang="ar"] h2 { font-style: normal; font-weight: 600; }
+  p { margin: 0 0 16px; }
+  .work-title { display: flex; justify-content: space-between; gap: 16px; margin: 0 0 6px; }
+  .work-title b { font-weight: 500; }
+  .work-title span { color: var(--soft); }
+  footer { margin-top: 64px; color: var(--soft); font-size: 16px; }
 </style>
 </head>
 <body>
+<div class="page">
+  <a class="switch" href="#" id="lang"><span data-lang="en" lang="ar">العربية</span><span data-lang="ar" lang="en">English</span></a>
 
-<header>
-  <div class="wrap bar">
-    <a class="mark" href="#top"><i>G</i>Galy AI</a>
-    <nav>
-      <a href="#services"><span data-lang="en">Services</span><span data-lang="ar">الخدمات</span></a>
-      <a href="#work"><span data-lang="en">Work</span><span data-lang="ar">الأعمال</span></a>
-      <a href="#contact"><span data-lang="en">Contact</span><span data-lang="ar">تواصل</span></a>
-      <button class="lang" type="button" id="lang"><span data-lang="en">العربية</span><span data-lang="ar">English</span></button>
-    </nav>
-  </div>
-</header>
+  <!-- English -->
+  <div data-lang="en">
+    <h1>Omar Galy</h1>
+    <p class="meta">Mansoura, Egypt · <a href="mailto:galy.automation@gmail.com">galy.automation@gmail.com</a></p>
 
-<main id="top">
-  <div class="wrap hero">
-    <div>
-      <p class="eyebrow"><span data-lang="en">Galy AI · Omar Galy</span><span data-lang="ar">Galy AI · عمر الجالي</span></p>
-      <h1>
-        <span data-lang="en">Chatbots that answer your customers and take their orders.</span>
-        <span data-lang="ar">شات بوت بيرد على عملائك وبياخد طلباتهم.</span>
-      </h1>
-      <p class="lede">
-        <span data-lang="en">I'm Omar Galy, a developer in Mansoura, Egypt. I build WhatsApp and website assistants for businesses, and the automations that connect them to the rest of your work.</span>
-        <span data-lang="ar">أنا عمر الجالي، مطوّر من المنصورة، مصر. بعمل مساعدين ذكيين على واتساب وعلى المواقع للشركات والمحلات، وبربطهم بباقي شغلك بأتمتة بتشتغل لوحدها.</span>
-      </p>
-      <a class="cta" href="mailto:galy.automation@gmail.com"><span data-lang="en">Email me</span><span data-lang="ar">راسلني على الإيميل</span></a>
-      <span class="cta-note">galy.automation@gmail.com</span>
-    </div>
+    <p>I build chatbots for small businesses, mostly on WhatsApp, and the automations behind them. I work with n8n, Supabase and AI models. Before this I made Android apps in Flutter.</p>
+    <p>I work under the name Galy AI.</p>
 
-    <div class="phone" aria-label="Example conversation with the Galy Fashion demo">
-      <div class="who">Galy Fashion — demo</div>
-      <div class="msg in">عايز قميص أكسفورد أبيض مقاس M</div>
-      <div class="msg bot">تمام، ده ملخص طلبك:<br>قميص أكسفورد — أبيض — M<br>720 ج + شحن 75 ج = <b>795 ج</b><br><small>الدفع كاش عند الاستلام</small><span class="btn">تأكيد الطلب</span></div>
-      <div class="msg bot">تم تسجيل الطلب رقم GF-10531 ✓</div>
-    </div>
+    <h2>Work</h2>
+    <p class="work-title"><b>Galy Fashion</b><span>2026</span></p>
+    <p>A demo men's clothing shop that runs entirely inside WhatsApp. You can ask about products and get their photos, pick a size and colour, and place, change or cancel an order.</p>
+    <p>The bot never saves anything by itself. It shows you the order, you press a confirm button, and only then is it written down. That way it can't tell you an order went through when it didn't.</p>
+    <p>It's a demo, so nothing is actually sold or shipped.</p>
+
+    <h2>Contact</h2>
+    <p>If your business answers the same questions on WhatsApp all day, write to me at <a href="mailto:galy.automation@gmail.com">galy.automation@gmail.com</a>.</p>
+
+    <footer><a href="privacy.html">Privacy policy</a></footer>
   </div>
 
-  <section id="services">
-    <div class="wrap">
-      <h2><span data-lang="en">What I build</span><span data-lang="ar">بعمل إيه</span></h2>
-      <p class="sub"><span data-lang="en">Each project is built for one business, on its own accounts and database.</span><span data-lang="ar">كل مشروع معمول لنشاط واحد، على حساباته وقاعدة بياناته الخاصة.</span></p>
-      <div class="grid">
-        <div class="card">
-          <h3><span data-lang="en">WhatsApp chatbots</span><span data-lang="ar">شات بوت واتساب</span></h3>
-          <p><span data-lang="en">Answer questions, send product photos, and take, change or cancel orders, all inside the chat.</span><span data-lang="ar">يرد على الأسئلة، يبعت صور المنتجات، وياخد الطلبات ويعدلها ويلغيها، كله جوه المحادثة.</span></p>
-        </div>
-        <div class="card">
-          <h3><span data-lang="en">Website assistants</span><span data-lang="ar">مساعد للموقع</span></h3>
-          <p><span data-lang="en">A chat box on your site that answers from your own documents and prices, not from guesses.</span><span data-lang="ar">شات على موقعك بيجاوب من ملفاتك وأسعارك انت، مش من التخمين.</span></p>
-        </div>
-        <div class="card">
-          <h3><span data-lang="en">Automations</span><span data-lang="ar">أتمتة</span></h3>
-          <p><span data-lang="en">n8n workflows and Supabase databases that move data between your tools without manual work.</span><span data-lang="ar">workflows على n8n وقواعد بيانات Supabase بتنقل البيانات بين أدواتك من غير شغل يدوي.</span></p>
-        </div>
-        <div class="card">
-          <h3><span data-lang="en">Mobile apps</span><span data-lang="ar">تطبيقات موبايل</span></h3>
-          <p><span data-lang="en">Android apps with Flutter, including turning an existing website into an app.</span><span data-lang="ar">تطبيقات أندرويد بـ Flutter، ومنها تحويل موقع موجود لتطبيق.</span></p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Arabic -->
+  <div data-lang="ar">
+    <h1>عمر الجالي</h1>
+    <p class="meta">المنصورة، مصر · <a href="mailto:galy.automation@gmail.com">galy.automation@gmail.com</a></p>
 
-  <section id="work">
-    <div class="wrap work">
-      <div>
-        <span class="tag"><span data-lang="en">Demo project</span><span data-lang="ar">مشروع تجريبي</span></span>
-        <h2>Galy Fashion</h2>
-        <p class="sub" style="margin-bottom:0">
-          <span data-lang="en">A demonstration men's clothing shop that runs entirely on WhatsApp, built to show what a store chatbot can do.</span>
-          <span data-lang="ar">متجر ملابس رجالي تجريبي شغال بالكامل على واتساب، معمول عشان يوضح الشات بوت يقدر يعمل إيه لمتجر.</span>
-        </p>
-        <ul>
-          <li><span data-lang="en">Browse products with photos, sizes and colours</span><span data-lang="ar">تصفح المنتجات بالصور والمقاسات والألوان</span></li>
-          <li><span data-lang="en">Place, change or cancel an order</span><span data-lang="ar">اطلب، عدّل أو الغي الطلب</span></li>
-          <li><span data-lang="en">Track orders, request a return, file a complaint</span><span data-lang="ar">تابع طلباتك، اطلب استرجاع، أو قدّم شكوى</span></li>
-        </ul>
-        <p class="notice">
-          <span data-lang="en"><b>This is a demo.</b> Nothing is sold or shipped and no payment is ever taken. Orders placed in the demo are test records only.</span>
-          <span data-lang="ar"><b>ده متجر تجريبي.</b> مفيش حاجة بتتباع أو بتتشحن ومفيش أي دفع. الطلبات اللي بتتعمل فيه مجرد تجربة.</span>
-        </p>
-      </div>
-      <div class="principle">
-        <h3 style="margin:0 0 6px"><span data-lang="en">Why it can't invent an order</span><span data-lang="ar">ليه مستحيل يسجل طلب محصلش</span></h3>
-        <p style="margin:0;color:var(--muted)"><span data-lang="en">The AI is never allowed to write to the database. Saving happens in three steps:</span><span data-lang="ar">الذكاء الاصطناعي مش مسموح له يكتب في قاعدة البيانات أصلاً. الحفظ بيتم على ٣ خطوات:</span></p>
-        <div class="steps">
-          <div><p><span data-lang="en">The assistant proposes the order in the chat.</span><span data-lang="ar">المساعد بيعرض الطلب في الشات.</span></p></div>
-          <div><p><span data-lang="en">The customer checks it and taps a confirm button.</span><span data-lang="ar">العميل بيراجعه ويدوس زرار التأكيد.</span></p></div>
-          <div><p><span data-lang="en">Only then does checked code save it and reply with the order number.</span><span data-lang="ar">وبعدها بس كود متراجع بيحفظه ويرد برقم الطلب.</span></p></div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <p>بعمل شات بوت للمحلات والشركات الصغيرة، أغلبه على واتساب، وبعمل الأتمتة اللي وراه. بشتغل بـ n8n وSupabase ونماذج الذكاء الاصطناعي، وقبل كده كنت بعمل تطبيقات أندرويد بـ Flutter.</p>
+    <p>بشتغل تحت اسم Galy AI.</p>
 
-  <section id="contact">
-    <div class="wrap">
-      <h2><span data-lang="en">Contact</span><span data-lang="ar">تواصل</span></h2>
-      <p class="sub"><span data-lang="en">Tell me what your business needs and I'll reply by email.</span><span data-lang="ar">قولي نشاطك محتاج إيه وهرد عليك على الإيميل.</span></p>
-      <a class="cta" href="mailto:galy.automation@gmail.com">galy.automation@gmail.com</a>
-    </div>
-  </section>
-</main>
+    <h2>أعمال</h2>
+    <p class="work-title"><b>Galy Fashion</b><span>٢٠٢٦</span></p>
+    <p>متجر ملابس رجالي تجريبي شغال بالكامل جوه واتساب. تقدر تسأل عن المنتجات وتشوف صورها، تختار المقاس واللون، وتطلب أو تعدّل أو تلغي الطلب.</p>
+    <p>البوت مش بيحفظ حاجة لوحده. بيعرض عليك الطلب، وانت تدوس زرار التأكيد، وبعدها بس الطلب بيتسجل. كده مستحيل يقولك إن الطلب اتسجل وهو ما اتسجلش.</p>
+    <p>ده متجر تجريبي، فمفيش حاجة بتتباع أو بتتشحن فعلاً.</p>
 
-<footer>
-  <div class="wrap">
-    <span>© 2026 Omar Galy · Galy AI · <span data-lang="en">Mansoura, Egypt</span><span data-lang="ar">المنصورة، مصر</span></span>
-    <a href="privacy.html"><span data-lang="en">Privacy policy</span><span data-lang="ar">سياسة الخصوصية</span></a>
+    <h2>تواصل</h2>
+    <p>لو نشاطك بيرد على نفس الأسئلة طول اليوم على واتساب، ابعتلي على <a href="mailto:galy.automation@gmail.com">galy.automation@gmail.com</a>.</p>
+
+    <footer><a href="privacy.html">سياسة الخصوصية</a></footer>
   </div>
-</footer>
+</div>
 
 <script>
   (function () {
@@ -231,7 +105,8 @@
     try { saved = localStorage.getItem("lang"); } catch (e) {}
     if (saved === "ar" || saved === "en") set(saved);
     else if ((navigator.language || "").slice(0, 2) === "ar") set("ar");
-    document.getElementById("lang").addEventListener("click", function () {
+    document.getElementById("lang").addEventListener("click", function (e) {
+      e.preventDefault();
       set(root.lang === "ar" ? "en" : "ar");
     });
   })();

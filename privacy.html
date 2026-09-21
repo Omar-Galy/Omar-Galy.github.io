@@ -5,47 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy policy — Galy AI</title>
 <meta name="description" content="How the Galy Fashion WhatsApp demo handles your data.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f5c4a'/%3E%3Ctext x='32' y='44' font-family='Arial' font-weight='700' font-size='34' fill='white' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root { --bg: #f7f5f0; --ink: #1c1f1e; --muted: #5d6461; --line: #e2ddd3; --accent: #0f5c4a; --surface: #ffffff; }
+  :root { --paper: #fbfaf7; --ink: #222120; --soft: #6f6b66; --link: #1f3f8f; }
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #121514; --ink: #e9ece9; --muted: #9aa39f; --line: #2a302e; --accent: #5cc7a5; --surface: #1a1e1d; }
+    :root { --paper: #191817; --ink: #e6e3de; --soft: #9a958e; --link: #9db5ee; }
   }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "IBM Plex Sans Arabic", system-ui, sans-serif; font-size: 17px; line-height: 1.7; }
-  a { color: var(--accent); }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Newsreader", "Noto Naskh Arabic", Georgia, serif; font-size: 19px; line-height: 1.6; }
+  html[lang="ar"] body { font-size: 18px; line-height: 1.9; }
+  a { color: var(--link); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .page { max-width: 34rem; margin: 0 auto; padding: 56px 20px; }
+  @media (max-width: 560px) { .page { padding-top: 32px; } body { font-size: 17px; } }
   [data-lang="ar"] { display: none; }
   html[lang="ar"] [data-lang="en"] { display: none; }
   html[lang="ar"] [data-lang="ar"] { display: revert; }
-  html[lang="ar"] body { line-height: 1.85; }
-  header { border-bottom: 1px solid var(--line); }
-  .bar { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .mark { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--ink); text-decoration: none; }
-  .mark i { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: var(--accent); color: var(--bg); font-style: normal; }
-  .lang { border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 6px 14px; font: inherit; font-size: 14px; cursor: pointer; }
-  main { padding: 48px 0 64px; }
-  h1 { font-size: 34px; line-height: 1.2; margin: 0 0 6px; }
-  .date { color: var(--muted); margin: 0 0 32px; font-size: 15px; }
-  h2 { font-size: 20px; margin: 32px 0 8px; }
-  p, li { color: var(--muted); }
-  ul { padding-inline-start: 22px; }
-  .box { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; }
-  footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted); font-size: 14px; }
+  nav { display: flex; justify-content: space-between; font-size: 16px; margin-bottom: 40px; }
+  h1 { font-size: 30px; font-weight: 500; margin: 0 0 2px; }
+  .date { color: var(--soft); margin: 0 0 32px; font-size: 16px; }
+  h2 { font-size: 19px; font-weight: 500; font-style: italic; margin: 36px 0 8px; }
+  html[lang="ar"] h2 { font-style: normal; font-weight: 600; }
+  p, li { margin: 0 0 12px; }
+  b { font-weight: 500; }
+  ul { padding-inline-start: 22px; margin: 0; }
+  .ask { font-style: italic; }
+  html[lang="ar"] .ask { font-style: normal; font-weight: 500; }
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap bar">
-    <a class="mark" href="index.html"><i>G</i>Galy AI</a>
-    <button class="lang" type="button" id="lang"><span data-lang="en">العربية</span><span data-lang="ar">English</span></button>
-  </div>
-</header>
 
-<main class="wrap">
+<div class="page">
+<nav>
+  <a href="index.html"><span data-lang="en">Omar Galy</span><span data-lang="ar">عمر الجالي</span></a>
+  <a href="#" id="lang"><span data-lang="en" lang="ar">العربية</span><span data-lang="ar" lang="en">English</span></a>
+</nav>
+<main>
   <!-- English -->
   <div data-lang="en">
     <h1>Privacy policy</h1>
@@ -53,7 +49,7 @@
 
     <p>This policy covers the <b>Galy Fashion</b> demo chatbot on WhatsApp, run by Omar Galy (Galy AI), Mansoura, Egypt. Galy Fashion is a demonstration shop: nothing is sold or shipped and no payment is taken.</p>
 
-    <div class="box"><p style="margin:0"><b>Please don't send real personal details.</b> Because this is a demo, you can use a made-up name, address and account number when you try an order or a return.</p></div>
+    <p class="ask"><b>Please don't send real personal details.</b> Because this is a demo, you can use a made-up name, address and account number when you try an order or a return.</p>
 
     <h2>What is collected</h2>
     <ul>
@@ -86,7 +82,7 @@
 
     <p>السياسة دي خاصة بالشات بوت التجريبي <b>Galy Fashion</b> على واتساب، واللي بيشغله عمر الجالي (Galy AI) من المنصورة، مصر. Galy Fashion متجر تجريبي: مفيش حاجة بتتباع أو بتتشحن ومفيش أي دفع.</p>
 
-    <div class="box"><p style="margin:0"><b>من فضلك متبعتش بيانات شخصية حقيقية.</b> عشان ده متجر تجريبي، تقدر تستخدم اسم وعنوان ورقم حساب من خيالك وانت بتجرب الطلب أو الاسترجاع.</p></div>
+    <p class="ask"><b>من فضلك متبعتش بيانات شخصية حقيقية.</b> عشان ده متجر تجريبي، تقدر تستخدم اسم وعنوان ورقم حساب من خيالك وانت بتجرب الطلب أو الاسترجاع.</p>
 
     <h2>بنجمع إيه</h2>
     <ul>
@@ -113,9 +109,7 @@
   </div>
 </main>
 
-<footer>
-  <div class="wrap">© 2026 Omar Galy · Galy AI · <a href="index.html"><span data-lang="en">Home</span><span data-lang="ar">الرئيسية</span></a></div>
-</footer>
+</div>
 
 <script>
   (function () {
@@ -129,7 +123,8 @@
     try { saved = localStorage.getItem("lang"); } catch (e) {}
     if (saved === "ar" || saved === "en") set(saved);
     else if ((navigator.language || "").slice(0, 2) === "ar") set("ar");
-    document.getElementById("lang").addEventListener("click", function () {
+    document.getElementById("lang").addEventListener("click", function (e) {
+      e.preventDefault();
       set(root.lang === "ar" ? "en" : "ar");
     });
   })();
