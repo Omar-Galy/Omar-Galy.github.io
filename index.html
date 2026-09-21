@@ -85,6 +85,10 @@
   .facts div:first-child { border-top: 0; }
   .facts dt { color: var(--text-2); font-size: 15px; }
   .facts dd { margin: 0; font-size: 15.5px; overflow-wrap: anywhere; }
+  @media (max-width: 480px) {
+    .facts { padding: 4px 20px; }
+    .facts div { grid-template-columns: 1fr; gap: 2px; padding-block: 12px; }
+  }
 
   /* Sections */
   section { padding-block: 72px; border-top: 1px solid var(--border); }
@@ -120,10 +124,11 @@
   .contact h2 { max-width: 20em; }
   .contact p { margin: 0; color: var(--text-2); }
 
-  footer { border-top: 1px solid var(--border); padding-block: 28px 40px; color: var(--text-2); font-size: 15px; }
-  footer .container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  footer { border-top: 1px solid var(--border); padding-block: 16px 28px; color: var(--text-2); font-size: 15px; }
+  footer .container { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; }
   footer a { color: var(--text-2); }
   footer a:hover { color: var(--text); }
+  .brand, footer a { display: inline-flex; align-items: center; min-height: 44px; }
 </style>
 </head>
 <body>
