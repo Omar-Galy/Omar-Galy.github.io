@@ -9,13 +9,14 @@
 <meta name="title-en" content="Dr. Galy Clinic: Dental clinic on the web | Omar Galy">
 <meta name="description" content="Dr. Galy Clinic: مساعد على موقع عيادة أسنان يجيب المرضى ويحجز المواعيد ويلغيها من المحادثة. من أعمال عمر الجالي.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://galy.dev/dr-galy-clinic.html">
+<meta property="og:url" content="https://galy.dev/dr-galy-clinic">
 <meta property="og:title" content="Dr. Galy Clinic: عيادة أسنان على الويب | عمر الجالي">
 <meta property="og:description" content="Dr. Galy Clinic: مساعد على موقع عيادة أسنان يجيب المرضى ويحجز المواعيد ويلغيها من المحادثة. من أعمال عمر الجالي.">
+<link rel="canonical" href="https://galy.dev/dr-galy-clinic">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@600;700&family=Readex+Pro:wght@400;500;600&display=swap" rel="stylesheet">
-<script>(function(d){d.classList.add("js");try{if(localStorage.getItem("lang")==="en"){d.lang="en";d.dir="ltr"}var t=localStorage.getItem("theme");if(t==="dark"||t==="light")d.setAttribute("data-theme",t)}catch(e){}})(document.documentElement)</script>
+<script src="boot.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -66,7 +67,7 @@
     <dl class="facts">
       <div><dt><span data-lang="ar">القناة</span><span data-lang="en">Channel</span></dt><dd><span data-lang="ar">نافذة محادثة في موقع العيادة</span><span data-lang="en">A chat window on the clinic's website</span></dd></div>
       <div><dt><span data-lang="ar">اللغات</span><span data-lang="en">Languages</span></dt><dd><span data-lang="ar">العامية المصرية، الإنجليزية</span><span data-lang="en">Egyptian Arabic, English</span></dd></div>
-      <div><dt><span data-lang="ar">الأدوات</span><span data-lang="en">Built with</span></dt><dd dir="ltr" style="text-align: start">n8n, Supabase, Cloudflare Pages</dd></div>
+      <div><dt><span data-lang="ar">الأدوات</span><span data-lang="en">Built with</span></dt><dd><bdi dir="ltr">n8n, Supabase, Cloudflare Pages</bdi></dd></div>
     </dl>
   </div>
 
@@ -74,17 +75,17 @@
     <div class="container">
       <div class="two-col">
         <div class="panel">
-          <h3><span data-lang="ar">ما يستطيعه المريض</span><span data-lang="en">What a patient can do</span></h3>
+          <h2><span data-lang="ar">ما يستطيعه المريض</span><span data-lang="en">What a patient can do</span></h2>
           <ul>
             <li><span data-lang="ar">يسأل عن الخدمات والأسعار والأطباء وساعات العمل</span><span data-lang="en">Ask about services, prices, doctors and opening hours</span></li>
             <li><span data-lang="ar">يحجز من المحادثة: المساعد يجمع الاسم والهاتف والخدمة والوقت، ثم يعرض ملخصا بزر تأكيد</span><span data-lang="en">Book from the chat: the assistant collects the name, phone, service and time, then shows a summary with a confirm button</span></li>
-            <li><span data-lang="ar">أو يحجز من نموذج الحجز في الصفحة، والنتيجة واحدة</span><span data-lang="en">Or book from the page's booking form, with the same result</span></li>
+            <li><span data-lang="ar">ومن يفضل نموذجا، يفتح له المساعد نموذج الحجز داخل المحادثة، والنتيجة واحدة</span><span data-lang="en">Or, for anyone who prefers a form, the assistant opens a booking form inside the chat, with the same result</span></li>
             <li><span data-lang="ar">يراجع مواعيده، ويلغي موعدا بزر تأكيد</span><span data-lang="en">Review their appointments, and cancel one with a confirm button</span></li>
             <li><span data-lang="ar">يحجز لطفله باسم ولي الأمر</span><span data-lang="en">Book for a child under a guardian's name</span></li>
           </ul>
         </div>
         <div class="panel">
-          <h3><span data-lang="ar">كيف بني</span><span data-lang="en">How it's built</span></h3>
+          <h2><span data-lang="ar">كيف بني</span><span data-lang="en">How it's built</span></h2>
           <ul>
             <li><span data-lang="ar">قواعد الحجز في قاعدة البيانات، لا في النموذج: ساعات العمل، أيام الإجازة، منع حجز الوقت نفسه مرتين، حد أقصى للحجوزات، وصحة رقم الهاتف. النموذج لا يستطيع تجاوزها.</span><span data-lang="en">The booking rules live in the database, not in the model: working hours, days off, no double-booking of a slot, a cap on bookings, and a valid phone number. The model can't get around them.</span></li>
             <li><span data-lang="ar">زر المحادثة ونموذج الحجز يرسلان إلى النقطة نفسها، فتطبق عليهما القواعد نفسها.</span><span data-lang="en">The chat button and the booking form post to the same endpoint, so the same rules apply to both.</span></li>
@@ -142,6 +143,6 @@
   </div>
 </footer>
 
-<script src="site.js" onerror="document.documentElement.classList.remove('js')"></script>
+<script src="site.js"></script>
 </body>
 </html>

@@ -9,13 +9,14 @@
 <meta name="title-en" content="Galy Fashion: Men's clothing shop on WhatsApp | Omar Galy">
 <meta name="description" content="Galy Fashion: مساعد متجر ملابس يعمل داخل واتساب، يعرض المنتجات ويسجل الطلبات ويعدلها ويلغيها. من أعمال عمر الجالي.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://galy.dev/galy-fashion.html">
+<meta property="og:url" content="https://galy.dev/galy-fashion">
 <meta property="og:title" content="Galy Fashion: متجر ملابس رجالية على واتساب | عمر الجالي">
 <meta property="og:description" content="Galy Fashion: مساعد متجر ملابس يعمل داخل واتساب، يعرض المنتجات ويسجل الطلبات ويعدلها ويلغيها. من أعمال عمر الجالي.">
+<link rel="canonical" href="https://galy.dev/galy-fashion">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@600;700&family=Readex+Pro:wght@400;500;600&display=swap" rel="stylesheet">
-<script>(function(d){d.classList.add("js");try{if(localStorage.getItem("lang")==="en"){d.lang="en";d.dir="ltr"}var t=localStorage.getItem("theme");if(t==="dark"||t==="light")d.setAttribute("data-theme",t)}catch(e){}})(document.documentElement)</script>
+<script src="boot.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -70,7 +71,7 @@
     <dl class="facts">
       <div><dt><span data-lang="ar">القناة</span><span data-lang="en">Channel</span></dt><dd><span data-lang="ar">واتساب</span><span data-lang="en">WhatsApp</span></dd></div>
       <div><dt><span data-lang="ar">اللغات</span><span data-lang="en">Languages</span></dt><dd><span data-lang="ar">العامية المصرية، الإنجليزية</span><span data-lang="en">Egyptian Arabic, English</span></dd></div>
-      <div><dt><span data-lang="ar">الأدوات</span><span data-lang="en">Built with</span></dt><dd dir="ltr" style="text-align: start">WhatsApp Cloud API, n8n, Supabase</dd></div>
+      <div><dt><span data-lang="ar">الأدوات</span><span data-lang="en">Built with</span></dt><dd><bdi dir="ltr">WhatsApp Cloud API, n8n, Supabase</bdi></dd></div>
     </dl>
   </div>
 
@@ -78,7 +79,7 @@
     <div class="container">
       <div class="two-col">
         <div class="panel">
-          <h3><span data-lang="ar">ما يستطيعه العميل</span><span data-lang="en">What a customer can do</span></h3>
+          <h2><span data-lang="ar">ما يستطيعه العميل</span><span data-lang="en">What a customer can do</span></h2>
           <ul>
             <li><span data-lang="ar">يسأل عن المنتجات والمقاسات والألوان والأسعار، وتصله صور المنتج</span><span data-lang="en">Ask about products, sizes, colours and prices, and get the product's photos</span></li>
             <li><span data-lang="ar">يطلب قطعة أو أكثر، ويراجع ملخص الطلب بالأسعار قبل تأكيده</span><span data-lang="en">Order one item or several, and review a priced summary before confirming</span></li>
@@ -88,7 +89,7 @@
           </ul>
         </div>
         <div class="panel">
-          <h3><span data-lang="ar">كيف بني</span><span data-lang="en">How it's built</span></h3>
+          <h2><span data-lang="ar">كيف بني</span><span data-lang="en">How it's built</span></h2>
           <ul>
             <li><span data-lang="ar">زر التأكيد: المساعد يقترح العملية فقط. عند ضغط الزر تنفذ العملية المحفوظة في قاعدة البيانات مباشرة، دون المرور بنموذج الذكاء الاصطناعي.</span><span data-lang="en">The confirm button: the assistant only proposes an action. Pressing the button runs the action stored in the database directly, without passing through the AI model.</span></li>
             <li><span data-lang="ar">أدوات المساعد للقراءة فقط: يقرأ المنتجات والطلبات والمرتجعات، ولا يستطيع تغيير شيء بنفسه.</span><span data-lang="en">The assistant's tools are read-only: it reads products, orders and returns, and can't change anything by itself.</span></li>
@@ -146,6 +147,6 @@
   </div>
 </footer>
 
-<script src="site.js" onerror="document.documentElement.classList.remove('js')"></script>
+<script src="site.js"></script>
 </body>
 </html>

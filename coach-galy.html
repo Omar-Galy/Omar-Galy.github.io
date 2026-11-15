@@ -9,13 +9,14 @@
 <meta name="title-en" content="Coach Galy: Fitness coach on Telegram | Omar Galy">
 <meta name="description" content="Coach Galy: مساعد على تيليجرام يعمل نيابة عن مدرب لياقة، يسجل بيانات المتدرب ويرسل له خطته ويجيب أسئلته. من أعمال عمر الجالي.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://galy.dev/coach-galy.html">
+<meta property="og:url" content="https://galy.dev/coach-galy">
 <meta property="og:title" content="Coach Galy: مدرب لياقة على تيليجرام | عمر الجالي">
 <meta property="og:description" content="Coach Galy: مساعد على تيليجرام يعمل نيابة عن مدرب لياقة، يسجل بيانات المتدرب ويرسل له خطته ويجيب أسئلته. من أعمال عمر الجالي.">
+<link rel="canonical" href="https://galy.dev/coach-galy">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@600;700&family=Readex+Pro:wght@400;500;600&display=swap" rel="stylesheet">
-<script>(function(d){d.classList.add("js");try{if(localStorage.getItem("lang")==="en"){d.lang="en";d.dir="ltr"}var t=localStorage.getItem("theme");if(t==="dark"||t==="light")d.setAttribute("data-theme",t)}catch(e){}})(document.documentElement)</script>
+<script src="boot.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -66,7 +67,7 @@
     <dl class="facts">
       <div><dt><span data-lang="ar">القناة</span><span data-lang="en">Channel</span></dt><dd><span data-lang="ar">تيليجرام، ومصمم ليعمل على واتساب أيضا</span><span data-lang="en">Telegram, and designed to run on WhatsApp too</span></dd></div>
       <div><dt><span data-lang="ar">اللغات</span><span data-lang="en">Languages</span></dt><dd><span data-lang="ar">العامية المصرية، الإنجليزية</span><span data-lang="en">Egyptian Arabic, English</span></dd></div>
-      <div><dt><span data-lang="ar">الأدوات</span><span data-lang="en">Built with</span></dt><dd dir="ltr" style="text-align: start">Telegram Bot API, n8n, Supabase</dd></div>
+      <div><dt><span data-lang="ar">الأدوات</span><span data-lang="en">Built with</span></dt><dd><bdi dir="ltr">Telegram Bot API, n8n, Supabase</bdi></dd></div>
     </dl>
   </div>
 
@@ -74,7 +75,7 @@
     <div class="container">
       <div class="two-col">
         <div class="panel">
-          <h3><span data-lang="ar">ما يستطيعه المتدرب</span><span data-lang="en">What a trainee can do</span></h3>
+          <h2><span data-lang="ar">ما يستطيعه المتدرب</span><span data-lang="en">What a trainee can do</span></h2>
           <ul>
             <li><span data-lang="ar">يعطي اسمه ووزنه وهدفه، والمساعد يقرؤها عليه ليؤكدها قبل إرسال الخطة</span><span data-lang="en">Give their name, weight and goal; the assistant reads them back for a yes before sending the plan</span></li>
             <li><span data-lang="ar">يستلم خطته ملفا واحدا: التمرين والتغذية</span><span data-lang="en">Receive their plan as one file: training and food</span></li>
@@ -84,7 +85,7 @@
           </ul>
         </div>
         <div class="panel">
-          <h3><span data-lang="ar">كيف بني</span><span data-lang="en">How it's built</span></h3>
+          <h2><span data-lang="ar">كيف بني</span><span data-lang="en">How it's built</span></h2>
           <ul>
             <li><span data-lang="ar">المساعد لا يؤلف خطة: الخطط ملفات أعدها المدرب مسبقا، والمساعد يسلمها فقط.</span><span data-lang="en">The assistant doesn't write a plan: the plans are files the coach prepared beforehand, and the assistant only delivers them.</span></li>
             <li><span data-lang="ar">قاعدة البيانات هي التي تحدد الخطة وترسلها، لا النموذج. وبعد الإرسال لا يغير الخطة إلا المدرب.</span><span data-lang="en">The database decides which plan goes out and sends it, not the model. Once sent, only the coach changes it.</span></li>
@@ -153,6 +154,6 @@
   </div>
 </footer>
 
-<script src="site.js" onerror="document.documentElement.classList.remove('js')"></script>
+<script src="site.js"></script>
 </body>
 </html>

@@ -33,13 +33,14 @@
     return t ? t === "dark" : darkQuery.matches;
   }
   function label() {
+    var replayName = root.lang === "en" ? "Replay the chat" : "إعادة تشغيل المحادثة";
+    document.querySelectorAll(".chat-replay").forEach(function (b) { b.setAttribute("aria-label", replayName); });
     if (!themeBtn) return;
     var dark = isDark(), en = root.lang === "en";
     themeBtn.setAttribute("aria-label", dark ? (en ? "Day mode" : "الوضع النهاري") : (en ? "Night mode" : "الوضع الليلي"));
-    themeBtn.setAttribute("aria-pressed", dark ? "true" : "false");
   }
+  label();
   if (themeBtn) {
-    label();
     themeBtn.addEventListener("click", function () {
       var next = isDark() ? "light" : "dark";
       function apply() { root.setAttribute("data-theme", next); label(); }
@@ -210,7 +211,7 @@
         { out: true, html: p("صح", "Yes") },
         { who: BOT, html: p("تمام يا كريم، لقيت الخطة اللي كوتش جالي مجهزهالك، ومبعوتالك في ملف تحت الرسالة.",
                             "Great, Karim. I found the plan Coach Galy prepared for you; it's in the file below this message.") },
-        { who: null, file: { name: "coach_galy_plan_2500.pdf", size: "194 KB" } },
+        { who: null, file: { name: "coach_galy_plan_2000.pdf", size: "193 KB" } },
         { out: true, html: p("الـ Lat Pulldown بيتعمل إزاي؟", "How do I do the Lat Pulldown?") },
         { who: BOT, html: "<ol>" + [
             ["امسك البار أوسع من الكتف بشوية.", "Hold the bar a little wider than your shoulders."],
