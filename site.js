@@ -121,17 +121,25 @@
         { who: BOT, html: p("أيوه، جاكيت الجينز بـ 1250 جنيه، متاح أزرق دنيم وأسود بمقاسات S لـ XXL. تحب أجهزهولك؟",
                             "Yes, the denim jacket is 1250 EGP, in denim blue and black, sizes S to XXL. Shall I prepare one for you?") },
         { who: null, photo: { src: "img/store-jacket.webp", ar: "جاكيت جينز، أزرق دنيم", en: "Denim jacket, denim blue" } },
+        { out: true, html: p("وجاكيت الجينز بيتغسل إزاي عموما؟", "And how do you wash a denim jacket, generally?") },
+        { who: BOT, html: p("نصيحة عامة: اقلبه على الوش التاني واغسله في مية باردة، ونشفه في الهوا بعيد عن الشمس عشان لونه يفضل ثابت.",
+                            "A general tip: turn it inside out, wash it in cold water, and dry it in the air out of the sun so the colour holds.") },
         { out: true, html: p('طلبي اللي قبل كده <span dir="ltr">GF-1038</span> وصل لفين؟', "Where's my earlier order, GF-1038?") },
         { who: BOT, html: p('طلبك <span dir="ltr">GF-1038</span> اتشحن، وهيوصلك خلال يومين. المندوب هيتصل بيك قبل ما يوصل.',
-                            "Your order GF-1038 has shipped and will reach you within 2 days. The courier will call you before arriving.") }
+                            "Your order GF-1038 has shipped and will reach you within 2 days. The courier will call you before arriving.") },
+        { out: true, html: p("طب عايز أكلم حد من المتجر", "I'd like to talk to someone at the shop") },
+        { who: BOT, html: p('تقدر تكلم فريق المتجر على واتساب <span dir="ltr">01037800929</span>.', "You can reach the shop's team on WhatsApp at 01037800929.") }
       ]
     },
     clinic: {
       button: both("تأكيد الحجز", "Confirm booking"),
       script: [
-        { out: true, who: PATIENT, html: p("عايز أحجز تنظيف يوم الأربعاء بعد العصر", "I'd like to book a cleaning on Wednesday afternoon") },
-        { who: BOT, html: p("أهلا بيك. المتاح يوم " + DAY_AR + " بعد العصر: 4 مساء، 5 مساء، 7 مساء. تحب أنهي ميعاد؟ وابعتلي اسمك بالكامل وسنك ورقم تليفونك.",
-                            "Welcome. Free on " + DAY_EN + " afternoon: 4 pm, 5 pm and 7 pm. Which one suits you? And send me your full name, age and phone number.") },
+        { out: true, who: PATIENT, html: p("تنظيف الجير بكام؟", "How much is a cleaning?") },
+        { who: BOT, html: p("تنظيف الأسنان وإزالة الجير بالموجات فوق الصوتية مع تلميع بـ 350 جنيه للجلسة، ويفضل يتعمل كل 6 شهور.",
+                            "Cleaning and scaling with ultrasound, plus polishing, is 350 EGP a session, and is best done every six months.") },
+        { out: true, html: p("طيب عايز أحجز يوم الأربعاء بعد العصر", "OK, I'd like to book on Wednesday afternoon") },
+        { who: BOT, html: p("المتاح يوم " + DAY_AR + " بعد العصر: 4 مساء، 5 مساء، 7 مساء. تحب أنهي ميعاد؟ وابعتلي اسمك بالكامل وسنك ورقم تليفونك.",
+                            "Free on " + DAY_EN + " afternoon: 4 pm, 5 pm and 7 pm. Which one suits you? And send me your full name, age and phone number.") },
         { out: true, html: p('5، محمد علي حسن، 34 سنة، <span dir="ltr">0100 765 4321</span>', "5 pm. Mohamed Ali Hassan, 34, 0100 765 4321") },
         { who: BOT, button: true, html: rows([
               ["الخدمة", "Service", both("تنظيف وإزالة الجير", "Cleaning and scaling")],
@@ -145,7 +153,10 @@
       ],
       after: [
         { card: true, html: '<p class="ok">' + CHECK + both("تم تأكيد الحجز", "Booking confirmed") + "</p>" +
-            "<p><b>" + both("تنظيف وإزالة الجير", "Cleaning and scaling") + "</b><br>" + both(DAY_AR + "، 5 مساء", DAY_EN + ", 5 pm") + "</p>" }
+            "<p><b>" + both("تنظيف وإزالة الجير", "Cleaning and scaling") + "</b><br>" + both(DAY_AR + "، 5 مساء", DAY_EN + ", 5 pm") + "</p>" },
+        { out: true, html: p("العيادة فين بالظبط؟", "Where exactly is the clinic?") },
+        { who: BOT, html: p("15 شارع التحرير، الدور الثالث، المهندسين، الجيزة، أمام محطة المترو.",
+                            "15 El-Tahrir St., third floor, Mohandessin, Giza, opposite the metro station.") }
       ]
     },
     coach: {
@@ -158,7 +169,19 @@
         { out: true, html: p("صح", "Yes") },
         { who: BOT, html: p("تمام يا كريم، لقيت الخطة اللي كوتش جالي مجهزهالك، ومبعوتالك في ملف تحت الرسالة.",
                             "Great, Karim. I found the plan Coach Galy prepared for you; it's in the file below this message.") },
-        { who: null, file: { name: "coach_galy_plan_2500.pdf", size: "194 KB" } }
+        { who: null, file: { name: "coach_galy_plan_2500.pdf", size: "194 KB" } },
+        { out: true, html: p("الـ Lat Pulldown بيتعمل إزاي؟", "How do I do the Lat Pulldown?") },
+        { who: BOT, html: "<ol>" + [
+            ["امسك البار أوسع من الكتف بشوية.", "Hold the bar a little wider than your shoulders."],
+            ["اقعد وثبت فخادك تحت المسند.", "Sit and lock your thighs under the pad."],
+            ["ميل لورا حاجة بسيطة.", "Lean back slightly."],
+            ["اسحب البار لأعلى الصدر وكوعك نازل لتحت ولورا.", "Pull the bar to your upper chest, elbows down and back."],
+            ["اعصر اللاتس تحت.", "Squeeze your lats at the bottom."],
+            ["رجع البار بتحكم وما تسيبوش يشد دراعك.", "Let the bar back up under control; don't let it yank your arms."]
+          ].map(function (s) { return "<li>" + both(s[0], s[1]) + "</li>"; }).join("") + "</ol>" },
+        { out: true, html: p("لو فوتت حصة النهاردة أعوضها بكرة؟", "If I miss today's session, do I make it up tomorrow?") },
+        { who: BOT, html: p("لا، ما تعوضهاش. كمل جدولك عادي، وقلل حوالي 150 جرام من الرز أو البطاطا من أكل النهاردة عشان ما حرقتش طاقة التمرين.",
+                            "No, don't make it up. Carry on with your schedule, and cut about 150 g of rice or potatoes from today's food, since you didn't burn the training energy.") }
       ]
     }
   };

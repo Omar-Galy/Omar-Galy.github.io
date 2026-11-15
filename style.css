@@ -399,3 +399,8 @@ footer a:hover { color: var(--on-ink); }
 .chat-body.scroll { overflow-y: auto; justify-content: flex-start; padding-top: 40px; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--border) transparent; -webkit-overflow-scrolling: touch; }
 .chat-body.scroll > :first-child { margin-top: auto; }
 .chat.still .chat-body.scroll { height: 468px; }
+/* Room between a pressed button and the reply that follows it, and between bubbles from opposite sides */
+.chat-confirm { margin-bottom: 8px; }
+.msg.out + .msg:not(.out) > div, .msg:not(.out) + .msg.out > div { padding-top: 4px; }
+.bubble ol { margin: 0; padding-inline-start: 20px; }
+.bubble li + li { margin-top: 2px; }
