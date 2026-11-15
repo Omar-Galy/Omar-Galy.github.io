@@ -176,7 +176,8 @@ html[lang="en"] h1 { letter-spacing: -0.025em; line-height: 1.08; }
 html[lang="en"] .bubble { line-height: 1.5; }
 .msg.out .bubble { background: var(--bubble-out); border-color: #c2dfcf; border-start-start-radius: 16px; border-start-end-radius: 5px; }
 .msg.in .bubble { opacity: 1; transform: none; }
-.bubble + .bubble, .bubble + .chat-confirm { margin-top: 4px; }
+.bubble + .bubble { margin-top: 4px; }
+.bubble + .chat-confirm { margin-top: 8px; }
 .receipt { margin: 0; min-width: 232px; }
 .receipt div { display: flex; justify-content: space-between; gap: 20px; }
 .receipt dt, .receipt dd { margin: 0; }
@@ -184,15 +185,22 @@ html[lang="en"] .bubble { line-height: 1.5; }
 .receipt .sum { margin-top: 5px; padding-top: 5px; border-top: 1px solid var(--border); font-weight: 600; }
 .bubble p { margin: 0; }
 .bubble .small { color: var(--text-2); font-size: 14px; margin-top: 4px; }
-.chat-confirm { width: 88%; min-height: 46px; flex: none; border-radius: 12px; border: 1px solid var(--border); background: var(--bubble-in); color: var(--accent); font: inherit; font-weight: 600; font-size: 15.5px; cursor: pointer; transition: transform var(--fast) var(--ease), background-color var(--fast) ease, color var(--fast) ease, border-color var(--fast) ease; }
+.chat-confirm { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 88%; min-height: 48px; flex: none; border-radius: 12px; border: 1px solid var(--border); background: var(--bubble-in); color: var(--accent); font: inherit; font-weight: 600; font-size: 15.5px; cursor: pointer; transition: transform var(--fast) var(--ease), background-color var(--mid) ease, color var(--mid) ease, border-color var(--mid) ease; }
+.chat-confirm svg { width: 19px; height: 19px; flex: none; display: none; }
 @keyframes fade { from { opacity: 0; } }
 .bubble.fresh > * { animation: fade .45s ease both; }
-.chat-confirm:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .chat-confirm:active { transform: scale(.97); }
 .chat-confirm:disabled { background: var(--tint); border-color: var(--border); color: var(--text-2); cursor: default; }
-/* A soft ring around the button while it waits to be pressed */
-@keyframes ring { from { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 38%, transparent); } to { box-shadow: 0 0 0 12px transparent; } }
-.chat-confirm.waiting { animation: fade .45s ease both, ring 1.8s ease-out 1.2s infinite; }
+/* While it waits for the visitor it is the one filled button in the chat: a hand taps on it
+   and a soft ring breathes out around it. */
+.chat-confirm.waiting { position: relative; background: var(--accent); border-color: var(--accent); color: var(--on-accent); animation: fade .45s ease both; }
+.chat-confirm.waiting:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.chat-confirm.waiting svg { display: block; animation: tap 2.4s ease-in-out 1s infinite; }
+.chat-confirm.waiting::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; border: 2px solid var(--accent); opacity: 0; pointer-events: none; animation: ring 2.4s cubic-bezier(.2, .6, .35, 1) 1s infinite; }
+@keyframes ring { 0% { opacity: .55; inset: -1px; } 60%, 100% { opacity: 0; inset: -11px; border-radius: 22px; } }
+@keyframes tap { 0%, 28%, 100% { transform: none; } 10% { transform: translateY(3px) scale(.9); } 18% { transform: none; } }
+/* Once a message's row has opened it stops clipping, so the ring is never cut off. */
+.msg.open > div { overflow: visible; }
 .typing { display: inline-flex; gap: 5px; padding: 15px 16px; }
 .typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--text-2); opacity: .35; animation: dot 1.1s ease-in-out infinite; }
 .typing i:nth-child(2) { animation-delay: .15s; }

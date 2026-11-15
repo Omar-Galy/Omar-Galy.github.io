@@ -106,7 +106,8 @@
         "تم تسجيل الطلب رقم <span dir=\"ltr\">GF-1042</span>.<br>الإجمالي 1025 جنيه كاش عند الاستلام، منهم 75 جنيه شحن.<br>متوقع يوصل خلال 5 أيام، والمندوب هيتصل قبل ما يوصل.",
         "Order GF-1042 is placed.<br>The total is 1025 EGP, cash on delivery, including 75 EGP shipping.<br>Expected within 5 days; the courier will call before arriving.") + "</p>" }
   ];
-  var CONFIRM = both("تأكيد الطلب", "Confirm order");
+  var CONFIRM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>' +
+    both("تأكيد الطلب", "Confirm order");
 
   function add(m, instant) {
     var el = document.createElement("div");
@@ -149,7 +150,7 @@
             box.offsetHeight; // apply the starting height before the change
             box.style.transition = "height .5s var(--ease)";
             box.style.height = after + "px";
-            setTimeout(function () { box.style.height = ""; box.style.transition = ""; }, 560);
+            setTimeout(function () { box.style.height = ""; box.style.transition = ""; dots.classList.add("open"); }, 560);
           });
       });
     });
@@ -175,8 +176,11 @@
     chat.classList.add("still");
     SCRIPT.forEach(function (m) { add(m, true); });
     var still = body.querySelector(".chat-confirm");
+    still.classList.add("waiting");
+    body.querySelectorAll(".msg").forEach(function (m) { m.classList.add("open"); });
     still.addEventListener("click", function () {
       still.disabled = true;
+      still.classList.remove("waiting");
       AFTER.forEach(function (m) { add(m, true); });
     });
     return;
