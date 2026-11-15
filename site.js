@@ -68,126 +68,201 @@
     sections.forEach(function (s) { if (links[s.id]) spy.observe(s); });
   }
 
-  // ---- The chat in the hero ------------------------------------------------
-  // A shortened example of an order with the Galy Fashion assistant. The product, price,
-  // shipping fee and the wording of the summary and the confirmation are the shop's real ones.
-  var chat = document.querySelector("[data-chat]");
-  if (!chat) return;
-  var body = chat.querySelector(".chat-body");
-  var replay = chat.querySelector(".chat-replay");
-  var run = 0;
-
+  // ---- The chats -------------------------------------------------------------
+  // Short conversations typed in each assistant's own wording (products, prices, shipping,
+  // the clinic's summary lines and the coach's confirmation come from the bots' real data
+  // and instructions). Each plays once when it scrolls into view; a chat with a button
+  // then waits for the visitor to press it.
   function both(ar, en) { return '<span data-lang="ar">' + ar + '</span><span data-lang="en">' + en + "</span>"; }
-  function row(ar, en, v, cls) {
-    return '<div' + (cls ? ' class="' + cls + '"' : "") + "><dt>" + both(ar, en) + "</dt><dd>" + both(v + " جنيه", v + " EGP") + "</dd></div>";
+  function p(ar, en) { return "<p>" + both(ar, en) + "</p>"; }
+  function rows(list) {
+    return '<dl class="receipt">' + list.map(function (r) {
+      return "<div" + (r[3] ? ' class="sum"' : "") + "><dt>" + both(r[0], r[1]) + "</dt><dd>" + r[2] + "</dd></div>";
+    }).join("") + "</dl>";
   }
-  var CUSTOMER = both("العميل", "Customer"), BOT = both("المساعد", "Assistant");
-  var SCRIPT = [
-    { out: true, who: CUSTOMER, html: "<p>" + both("عايز قميص كتان بيج مقاس L", "I'd like the linen shirt in beige, size L") + "</p>" },
-    { who: BOT, html: "<p>" + both(
-        "موجود. قميص الكتان البيج مقاس L بـ 950 جنيه. عشان أجهز الطلب ابعت الاسم ورقم التليفون والمحافظة والعنوان.",
-        "It's in stock. The beige linen shirt in size L is 950 EGP. To prepare the order, send your name, phone number, governorate and address.") + "</p>" },
-    { out: true, html: "<p>" + both(
-        'أحمد سامي، <span dir="ltr">0100 123 4567</span>، الدقهلية، المنصورة، شارع الجمهورية',
-        "Ahmed Samy, 0100 123 4567, Dakahlia, Mansoura, El-Gomhoria St.") + "</p>" },
-    { who: BOT, confirm: true, html:
-        "<p><b>" + both("ملخص الطلب", "Order summary") + "</b></p>" +
-        '<dl class="receipt">' +
-          row("قميص كتان، بيج، مقاس L", "Linen shirt, beige, size L", 950) +
-          row("الشحن", "Shipping", 75) +
-          row("الإجمالي", "Total", 1025, "sum") +
-        "</dl>" +
-        '<p class="small">' + both("كاش عند الاستلام. راجع التفاصيل، ولو مظبوطة اضغط زرار التأكيد تحت.",
-                                   "Cash on delivery. Check the details, and if they're right, press the confirm button below.") + "</p>" }
-  ];
-  var AFTER = [
-    { out: true, html: "<p>" + both("تأكيد الطلب", "Confirm order") + "</p>" },
-    { who: BOT, html: "<p>" + both(
-        "تم تسجيل الطلب رقم <span dir=\"ltr\">GF-1042</span>.<br>الإجمالي 1025 جنيه كاش عند الاستلام، منهم 75 جنيه شحن.<br>متوقع يوصل خلال 5 أيام، والمندوب هيتصل قبل ما يوصل.",
-        "Order GF-1042 is placed.<br>The total is 1025 EGP, cash on delivery, including 75 EGP shipping.<br>Expected within 5 days; the courier will call before arriving.") + "</p>" }
-  ];
-  var CONFIRM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>' +
-    both("تأكيد الطلب", "Confirm order");
+  function egp(v) { return both(v + " جنيه", v + " EGP"); }
+  var HAND = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 14a8 8 0 0 1-8 8"/><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"/><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"/><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>';
+  var FILE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>';
+  var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
 
-  function add(m, instant) {
-    var el = document.createElement("div");
-    el.className = "msg" + (m.out ? " out" : "");
-    var html = "<div>" + (m.who ? '<span class="who">' + m.who + "</span>" : "") +
-      '<div class="bubble">' + (m.typing ? '<span class="typing" aria-hidden="true"><i></i><i></i><i></i></span>' : m.html) + "</div>";
-    if (m.confirm) html += '<button class="chat-confirm" type="button">' + CONFIRM + "</button>";
-    el.innerHTML = html + "</div>";
-    body.appendChild(el);
-    if (instant) el.classList.add("in");
-    else requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.add("in"); }); });
-    return el;
+  // The clinic's example day: the next Wednesday at least two days away, so it never shows a past date.
+  var AR_DAYS = ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"];
+  var EN_DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  var AR_MONTHS = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
+  var EN_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var day = new Date(); day.setDate(day.getDate() + 2);
+  while (day.getDay() !== 3) day.setDate(day.getDate() + 1);
+  var DAY_AR = AR_DAYS[3] + " " + day.getDate() + " " + AR_MONTHS[day.getMonth()];
+  var DAY_EN = EN_DAYS[3] + " " + day.getDate() + " " + EN_MONTHS[day.getMonth()];
+
+  var CUSTOMER = both("العميل", "Customer"), PATIENT = both("المريض", "Patient"), TRAINEE = both("المتدرب", "Trainee"), BOT = both("المساعد", "Assistant");
+
+  var CHATS = {
+    order: {
+      button: both("تأكيد الطلب", "Confirm order"),
+      script: [
+        { out: true, who: CUSTOMER, html: p("عايز قميص كتان بيج مقاس L", "I'd like the linen shirt in beige, size L") },
+        { who: BOT, html: p("موجود. قميص الكتان البيج مقاس L بـ 950 جنيه. عشان أجهز الطلب ابعت الاسم ورقم التليفون والمحافظة والعنوان.",
+                            "It's in stock. The beige linen shirt in size L is 950 EGP. To prepare the order, send your name, phone number, governorate and address.") },
+        { out: true, html: p('أحمد سامي، <span dir="ltr">0100 123 4567</span>، الدقهلية، المنصورة، شارع الجمهورية', "Ahmed Samy, 0100 123 4567, Dakahlia, Mansoura, El-Gomhoria St.") },
+        { who: BOT, button: true, html: "<p><b>" + both("ملخص الطلب", "Order summary") + "</b></p>" +
+            rows([["قميص كتان، بيج، مقاس L", "Linen shirt, beige, size L", egp(950)], ["الشحن", "Shipping", egp(75)], ["الإجمالي", "Total", egp(1025), true]]) +
+            '<p class="small">' + both("كاش عند الاستلام. راجع التفاصيل، ولو مظبوطة اضغط زرار التأكيد تحت.", "Cash on delivery. Check the details, and if they're right, press the confirm button below.") + "</p>" }
+      ],
+      after: [
+        { out: true, html: p("تأكيد الطلب", "Confirm order") },
+        { who: BOT, html: p('تم تسجيل الطلب رقم <span dir="ltr">GF-1042</span>.<br>الإجمالي 1025 جنيه كاش عند الاستلام، منهم 75 جنيه شحن.<br>متوقع يوصل خلال 5 أيام، والمندوب هيتصل قبل ما يوصل.',
+                            "Order GF-1042 is placed.<br>The total is 1025 EGP, cash on delivery, including 75 EGP shipping.<br>Expected within 5 days; the courier will call before arriving.") }
+      ]
+    },
+    store: {
+      script: [
+        { out: true, who: CUSTOMER, html: p("عندكم جاكيت جينز؟ عايز أشوف صوره", "Do you have a denim jacket? I'd like to see photos") },
+        { who: BOT, html: p("أيوه، جاكيت الجينز بـ 1250 جنيه، متاح أزرق دنيم وأسود بمقاسات S لـ XXL. تحب أجهزهولك؟",
+                            "Yes, the denim jacket is 1250 EGP, in denim blue and black, sizes S to XXL. Shall I prepare one for you?") },
+        { who: null, photo: { src: "img/store-jacket.webp", ar: "جاكيت جينز، أزرق دنيم", en: "Denim jacket, denim blue" } },
+        { out: true, html: p('طلبي اللي قبل كده <span dir="ltr">GF-1038</span> وصل لفين؟', "Where's my earlier order, GF-1038?") },
+        { who: BOT, html: p('طلبك <span dir="ltr">GF-1038</span> اتشحن، وهيوصلك خلال يومين. المندوب هيتصل بيك قبل ما يوصل.',
+                            "Your order GF-1038 has shipped and will reach you within 2 days. The courier will call you before arriving.") }
+      ]
+    },
+    clinic: {
+      button: both("تأكيد الحجز", "Confirm booking"),
+      script: [
+        { out: true, who: PATIENT, html: p("عايز أحجز تنظيف يوم الأربعاء بعد العصر", "I'd like to book a cleaning on Wednesday afternoon") },
+        { who: BOT, html: p("أهلا بيك. المتاح يوم " + DAY_AR + " بعد العصر: 4 مساء، 5 مساء، 7 مساء. تحب أنهي ميعاد؟ وابعتلي اسمك بالكامل وسنك ورقم تليفونك.",
+                            "Welcome. Free on " + DAY_EN + " afternoon: 4 pm, 5 pm and 7 pm. Which one suits you? And send me your full name, age and phone number.") },
+        { out: true, html: p('5، محمد علي حسن، 34 سنة، <span dir="ltr">0100 765 4321</span>', "5 pm. Mohamed Ali Hassan, 34, 0100 765 4321") },
+        { who: BOT, button: true, html: rows([
+              ["الخدمة", "Service", both("تنظيف وإزالة الجير", "Cleaning and scaling")],
+              ["اليوم", "Date", both(DAY_AR, DAY_EN)],
+              ["الميعاد", "Time", both("5 مساء", "5 pm")],
+              ["الاسم", "Name", both("محمد علي حسن", "Mohamed Ali Hassan")],
+              ["السن", "Age", "34"],
+              ["التليفون", "Phone", '<span dir="ltr">0100 765 4321</span>'],
+              ["السعر التقديري", "Estimated price", egp(350), true]]) +
+            '<p class="small">' + both("راجع البيانات واضغط زر تأكيد الحجز اللي تحت الرسالة، أو قولي لو عايز تعدل حاجة.", "Check the details and press the Confirm booking button below, or tell me if you'd like to change anything.") + "</p>" }
+      ],
+      after: [
+        { card: true, html: '<p class="ok">' + CHECK + both("تم تأكيد الحجز", "Booking confirmed") + "</p>" +
+            "<p><b>" + both("تنظيف وإزالة الجير", "Cleaning and scaling") + "</b><br>" + both(DAY_AR + "، 5 مساء", DAY_EN + ", 5 pm") + "</p>" }
+      ]
+    },
+    coach: {
+      script: [
+        { out: true, who: TRAINEE, html: p("أهلا", "Hi") },
+        { who: BOT, html: p("أهلا بيك، أنا مساعد كوتش جالي. ابعتلي اسمك ووزنك الحالي بالكيلو وهدفك، تخسيس ولا بناء عضل، عشان أفتح ملفك وأجيبلك الخطة اللي الكوتش مجهزهالك.",
+                            "Hi, I'm Coach Galy's assistant. Send me your name, your current weight in kg and your goal, fat loss or muscle gain, so I can open your file and get you the plan the coach prepared.") },
+        { out: true, html: p("كريم، 82 كيلو، تخسيس", "Karim, 82 kg, fat loss") },
+        { who: BOT, html: p("سجلت: كريم، 82 كيلو، تخسيس. صح كده؟", "Noted: Karim, 82 kg, fat loss. Is that right?") },
+        { out: true, html: p("صح", "Yes") },
+        { who: BOT, html: p("تمام يا كريم، لقيت الخطة اللي كوتش جالي مجهزهالك، ومبعوتالك في ملف تحت الرسالة.",
+                            "Great, Karim. I found the plan Coach Galy prepared for you; it's in the file below this message.") },
+        { who: null, file: { name: "coach_galy_plan_2500.pdf", size: "194 KB" } }
+      ]
+    }
+  };
+
+  function inner(m) {
+    if (m.photo) return '<figure class="bubble photo"><img src="' + m.photo.src + '" width="280" height="280" alt="' + m.photo.en + '"><figcaption>' + both(m.photo.ar, m.photo.en) + "</figcaption></figure>";
+    if (m.file) return '<div class="bubble file"><span class="file-icon">' + FILE + '</span><span><b dir="ltr">' + m.file.name + '</b><span class="small" dir="ltr">PDF · ' + m.file.size + "</span></span></div>";
+    return '<div class="bubble' + (m.card ? " card" : "") + '">' + (m.typing ? '<span class="typing" aria-hidden="true"><i></i><i></i><i></i></span>' : m.html) + "</div>";
   }
   function wait(ms) { return new Promise(function (ok) { setTimeout(ok, ms); }); }
 
-  // Plays a list of messages; the assistant "types" for a moment before each of its replies.
-  function play(list, mine) {
-    var chain = Promise.resolve();
-    list.forEach(function (m) {
-      chain = chain.then(function () {
-        if (mine !== run) return;
-        if (m.out) return wait(900).then(function () { if (mine === run) add(m); });
-        var dots;
-        return wait(500)
-          .then(function () { if (mine === run) dots = add({ who: m.who, typing: true }); })
-          .then(function () { return wait(1100); })
-          .then(function () {
-            if (mine !== run) return;
-            // The typing bubble becomes the reply, and its row grows to fit instead of jumping.
-            var box = dots.firstElementChild, holder = dots.querySelector(".bubble");
-            var before = box.offsetHeight;
-            holder.innerHTML = m.html;
-            holder.classList.add("fresh");
-            if (m.confirm) {
-              holder.insertAdjacentHTML("afterend", '<button class="chat-confirm waiting" type="button">' + CONFIRM + "</button>");
-              arm(dots.querySelector(".chat-confirm"), mine);
-            }
-            var after = box.offsetHeight;
-            box.style.height = before + "px";
-            box.offsetHeight; // apply the starting height before the change
-            box.style.transition = "height .5s var(--ease)";
-            box.style.height = after + "px";
-            setTimeout(function () { box.style.height = ""; box.style.transition = ""; dots.classList.add("open"); }, 560);
-          });
-      });
-    });
-    return chain;
-  }
-  function arm(btn, mine) {
-    btn.addEventListener("click", function () {
-      if (mine !== run) return;
-      btn.disabled = true;
-      btn.classList.remove("waiting");
-      play(AFTER, mine).then(function () { if (mine === run) replay.classList.add("on"); });
-    });
-  }
-  function start() {
-    run += 1;
-    body.innerHTML = "";
-    replay.classList.remove("on");
-    play(SCRIPT, run);
-  }
+  document.querySelectorAll("[data-chat]").forEach(function (chat) {
+    var data = CHATS[chat.getAttribute("data-chat")];
+    if (!data) return;
+    var body = chat.querySelector(".chat-body");
+    var replay = chat.querySelector(".chat-replay");
+    var run = 0;
 
-  if (calm || !("IntersectionObserver" in window)) {
-    // No motion: the whole example is on the page at once, and the button still works.
-    chat.classList.add("still");
-    SCRIPT.forEach(function (m) { add(m, true); });
-    var still = body.querySelector(".chat-confirm");
-    still.classList.add("waiting");
-    body.querySelectorAll(".msg").forEach(function (m) { m.classList.add("open"); });
-    still.addEventListener("click", function () {
-      still.disabled = true;
-      still.classList.remove("waiting");
-      AFTER.forEach(function (m) { add(m, true); });
-    });
-    return;
-  }
-  replay.addEventListener("click", start);
-  var first = new IntersectionObserver(function (entries) {
-    if (entries[0].isIntersecting) { first.disconnect(); setTimeout(start, 700); }
-  }, { threshold: 0.35 });
-  first.observe(chat);
+    function add(m, instant) {
+      var el = document.createElement("div");
+      el.className = "msg" + (m.out ? " out" : "");
+      var html = "<div>" + (m.who ? '<span class="who">' + m.who + "</span>" : "") + inner(m);
+      if (m.button) html += '<button class="chat-confirm" type="button">' + HAND + data.button + "</button>";
+      el.innerHTML = html + "</div>";
+      body.appendChild(el);
+      if (instant) el.classList.add("in", "open");
+      else {
+        requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.add("in"); }); });
+        setTimeout(function () { el.classList.add("open"); }, 560);
+      }
+      return el;
+    }
+
+    // Plays a list of messages; the assistant "types" for a moment before each text reply.
+    function play(list, mine) {
+      var chain = Promise.resolve();
+      list.forEach(function (m) {
+        chain = chain.then(function () {
+          if (mine !== run) return;
+          if (m.out) return wait(900).then(function () { if (mine === run) add(m); });
+          if (m.photo || m.file || m.card) return wait(m.card ? 700 : 450).then(function () { if (mine === run) add(m); });
+          var dots;
+          return wait(500)
+            .then(function () { if (mine === run) dots = add({ who: m.who, typing: true }); })
+            .then(function () { return wait(1100); })
+            .then(function () {
+              if (mine !== run) return;
+              // The typing bubble becomes the reply, and its row grows to fit instead of jumping.
+              var box = dots.firstElementChild, holder = dots.querySelector(".bubble");
+              var before = box.offsetHeight;
+              holder.innerHTML = m.html;
+              holder.classList.add("fresh");
+              if (m.button) {
+                holder.insertAdjacentHTML("afterend", '<button class="chat-confirm waiting" type="button">' + HAND + data.button + "</button>");
+                arm(dots.querySelector(".chat-confirm"), mine);
+              }
+              var after = box.offsetHeight;
+              dots.classList.remove("open");
+              box.style.height = before + "px";
+              box.offsetHeight; // apply the starting height before the change
+              box.style.transition = "height .5s var(--ease)";
+              box.style.height = after + "px";
+              setTimeout(function () { box.style.height = ""; box.style.transition = ""; dots.classList.add("open"); }, 560);
+            });
+        });
+      });
+      return chain;
+    }
+    function done(mine) { if (mine === run) replay.classList.add("on"); }
+    function arm(btn, mine) {
+      btn.addEventListener("click", function () {
+        if (mine !== run) return;
+        btn.disabled = true;
+        btn.classList.remove("waiting");
+        play(data.after, mine).then(function () { done(mine); });
+      });
+    }
+    function start() {
+      run += 1;
+      var mine = run;
+      body.innerHTML = "";
+      replay.classList.remove("on");
+      play(data.script, mine).then(function () { if (!data.after) done(mine); });
+    }
+
+    if (calm || !("IntersectionObserver" in window)) {
+      // No motion: the whole chat is on the page at once, and a button still works.
+      chat.classList.add("still");
+      data.script.forEach(function (m) { add(m, true); });
+      var still = body.querySelector(".chat-confirm");
+      if (still) {
+        still.classList.add("waiting");
+        still.addEventListener("click", function () {
+          still.disabled = true;
+          still.classList.remove("waiting");
+          data.after.forEach(function (m) { add(m, true); });
+        });
+      }
+      return;
+    }
+    replay.addEventListener("click", start);
+    var first = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) { first.disconnect(); setTimeout(start, 600); }
+    }, { threshold: 0.35 });
+    first.observe(chat);
+  });
 })();

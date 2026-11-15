@@ -125,12 +125,12 @@ html[lang="en"] h1 { letter-spacing: -0.025em; line-height: 1.08; }
 
 /* The one page-load moment: the hero's lines rise in turn, then the chat starts. */
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } }
-.js .hero-copy > *, .js .case-hero > div > *, .js .hero .chat, .js .case-hero .facts, .js .hero-facts { animation: rise var(--slow) var(--ease) both; }
-.js .hero-copy > :nth-child(2), .js .case-hero > div > :nth-child(2) { animation-delay: .08s; }
-.js .hero-copy > :nth-child(3), .js .case-hero > div > :nth-child(3) { animation-delay: .16s; }
-.js .hero-copy > :nth-child(4), .js .case-hero > div > :nth-child(4) { animation-delay: .24s; }
-.js .case-hero > div > :nth-child(5) { animation-delay: .32s; }
-.js .hero .chat, .js .case-hero .facts { animation-delay: .28s; }
+.js .hero-copy > *, .js .case-hero > div:first-child > *, .js .chat-wrap, .js .hero-facts { animation: rise var(--slow) var(--ease) both; }
+.js .hero-copy > :nth-child(2), .js .case-hero > div:first-child > :nth-child(2) { animation-delay: .08s; }
+.js .hero-copy > :nth-child(3), .js .case-hero > div:first-child > :nth-child(3) { animation-delay: .16s; }
+.js .hero-copy > :nth-child(4), .js .case-hero > div:first-child > :nth-child(4) { animation-delay: .24s; }
+.js .case-hero > div:first-child > :nth-child(5) { animation-delay: .32s; }
+.js .chat-wrap { animation-delay: .28s; }
 .js .hero-facts { animation-delay: .4s; }
 .intro { font-size: 19px; color: var(--text-2); margin: 0 0 32px; max-width: 36em; }
 
@@ -207,10 +207,10 @@ html[lang="en"] .bubble { line-height: 1.5; }
 .typing i:nth-child(2) { animation-delay: .15s; }
 .typing i:nth-child(3) { animation-delay: .3s; }
 @keyframes dot { 30% { opacity: 1; transform: translateY(-3px); } 60% { opacity: .35; transform: none; } }
-.chat-note { margin: 12px 4px 0; color: var(--text-2); font-size: 14px; }
+
 /* With motion turned off the whole chat is simply shown; without JavaScript the hero is text only. */
-html:not(.js) .chat { display: none; }
-html:not(.js) .hero { grid-template-columns: 1fr; }
+html:not(.js) .chat-wrap { display: none; }
+html:not(.js) :is(.hero, .case-hero) { grid-template-columns: 1fr; }
 .chat.still .chat-body { height: auto; -webkit-mask-image: none; mask-image: none; }
 @media (max-width: 480px) { .chat-body { height: 440px; padding-inline: 12px; } .bubble { max-width: 92%; } .chat-confirm { width: 92%; } }
 
@@ -245,7 +245,7 @@ html[lang="en"] h2 { letter-spacing: -0.01em; line-height: 1.25; }
 /* Work: one full-width row per project */
 .work { display: grid; gap: 18px; }
 .work-card {
-  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 48px;
+  position: relative; display: block;
   padding: 34px 38px; background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
   transition: transform var(--mid) var(--ease), border-color var(--mid) ease, box-shadow var(--mid) var(--ease);
 }
@@ -317,7 +317,7 @@ footer a:hover { color: var(--on-ink); }
 .crumb { padding-top: 28px; font-size: 15px; }
 .crumb a { display: inline-flex; align-items: center; min-height: 44px; color: var(--text-2); text-decoration: none; }
 .crumb a:hover { color: var(--text); }
-.case-hero { padding-block: 20px 64px; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+.case-hero { padding-block: 20px 56px; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 64px; align-items: center; }
 @media (max-width: 880px) { .case-hero { grid-template-columns: 1fr; gap: 32px; padding-block: 12px 48px; } }
 .case-kind { color: var(--text-2); margin: 0 0 6px; }
 .demo-line { margin: 20px 0 0; color: var(--text-2); font-size: 15px; }
@@ -376,3 +376,21 @@ footer a:hover { color: var(--on-ink); }
 .vt-coach { view-transition-name: project-coach; }
 .vt-store, .vt-clinic, .vt-coach { width: fit-content; }
 @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
+
+/* Under each chat */
+.chat-note { margin: 12px 6px 0; color: var(--text-2); font-size: 14px; }
+/* A photo the assistant sends, a file it sends, and the clinic's "booked" card */
+.bubble.photo { margin: 4px 0 0; padding: 4px; width: min(232px, 72%); }
+.bubble.photo img { width: 100%; height: auto; border-radius: 12px; background: var(--tint); }
+.bubble.photo figcaption { padding: 6px 8px 2px; font-size: 13.5px; color: var(--text-2); }
+.bubble.file { margin-top: 4px; display: flex; align-items: center; gap: 12px; padding: 10px 14px 10px 12px; }
+.file-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; flex: none; border-radius: 10px; background: var(--accent); color: var(--on-accent); }
+.file-icon svg { width: 20px; height: 20px; }
+.bubble.file b { display: block; font-weight: 600; font-size: 14px; }
+.bubble.file .small { display: block; margin: 0; }
+.bubble.card { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+.bubble .ok { display: flex; align-items: center; gap: 6px; color: var(--accent); font-weight: 600; margin-bottom: 4px; }
+.bubble .ok svg { width: 18px; height: 18px; }
+/* Project pages: three facts in a row with even gaps */
+.hero-facts.few .facts { grid-template-columns: repeat(3, auto); justify-content: start; gap: 0 72px; }
+.flow { margin-top: 0; }
