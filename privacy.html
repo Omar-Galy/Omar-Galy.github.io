@@ -1,149 +1,154 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<title>Privacy policy — Omar Galy</title>
-<meta name="description" content="How the Galy Fashion WhatsApp demo handles your data.">
+<title>سياسة الخصوصية | GalyAI</title>
+<meta name="title-ar" content="سياسة الخصوصية | GalyAI">
+<meta name="title-en" content="Privacy policy | GalyAI">
+<meta name="description" content="سياسة الخصوصية لموقع GalyAI والمساعدين التجريبيين الثلاثة: Galy Fashion و Dr. Galy Clinic و Coach Galy.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root { color-scheme: light; --bg: #f8fafc; --surface: #ffffff; --text: #0f172a; --text-2: #475569; --border: #e2e8f0; --accent: #0369a1; --tint: #f1f5f9; }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body { margin: 0; background: var(--bg); color: var(--text); font-family: "IBM Plex Sans", "IBM Plex Sans Arabic", system-ui, sans-serif; font-size: 17px; line-height: 1.65; }
-  html[lang="ar"] body { font-family: "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, sans-serif; line-height: 1.85; }
-  a { color: var(--accent); }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
-  .container { max-width: 1080px; margin: 0 auto; padding-inline: 24px; }
-  @media (max-width: 480px) { .container { padding-inline: 16px; } }
-  [data-lang="ar"] { display: none; }
-  html[lang="ar"] [data-lang="en"] { display: none; }
-  html[lang="ar"] [data-lang="ar"] { display: revert; }
-  header { border-bottom: 1px solid var(--border); }
-  .nav { display: flex; align-items: center; justify-content: space-between; min-height: 64px; }
-  .brand { font-weight: 600; color: var(--text); text-decoration: none; }
-  .lang-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border: 1px solid var(--border); border-radius: 8px; background: transparent; color: var(--text-2); font: inherit; font-size: 15px; cursor: pointer; transition: color .15s ease, background-color .15s ease; }
-  .lang-btn:hover { color: var(--text); background: var(--tint); }
-  main { max-width: 720px; padding-block: 56px 72px; }
-  h1 { font-size: 34px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 6px; }
-  html[lang="ar"] h1 { letter-spacing: 0; }
-  .date { color: var(--text-2); margin: 0 0 32px; font-size: 15px; }
-  h2 { font-size: 20px; font-weight: 600; margin: 36px 0 8px; }
-  p, li { color: var(--text-2); }
-  p { margin: 0 0 14px; }
-  li { margin-bottom: 8px; }
-  ul { padding-inline-start: 22px; margin: 0; }
-  b { color: var(--text); font-weight: 600; }
-  .note { background: var(--surface); border: 1px solid var(--border); border-inline-start: 3px solid var(--accent); border-radius: 8px; padding: 14px 18px; }
-  footer { border-top: 1px solid var(--border); padding-block: 16px 28px; color: var(--text-2); font-size: 15px; }
-  footer .container { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; }
-  footer a { color: var(--text-2); }
-  .brand, footer a { display: inline-flex; align-items: center; min-height: 44px; }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Fustat:wght@600;700&family=Readex+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="skip" href="#main"><span data-lang="ar">انتقل إلى المحتوى</span><span data-lang="en">Skip to content</span></a>
+
 <header>
   <div class="container nav">
-    <a class="brand" href="index.html"><span data-lang="en">Omar Galy</span><span data-lang="ar">عمر الجالي</span></a>
-    <button class="lang-btn" type="button" id="lang"><span data-lang="en" lang="ar">العربية</span><span data-lang="ar" lang="en">English</span></button>
+    <a class="brand" href="index.html">GalyAI</a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="index.html#work"><span data-lang="ar">الأعمال</span><span data-lang="en">Work</span></a>
+      <a href="index.html#contact"><span data-lang="ar">تواصل</span><span data-lang="en">Contact</span></a>
+      <button class="lang-btn" type="button" id="lang"><span data-lang="ar" lang="en">English</span><span data-lang="en" lang="ar">العربية</span></button>
+    </nav>
   </div>
 </header>
 
-<main class="container">
-  <!-- English -->
+<main id="main" class="container narrow doc">
+
+  <div data-lang="ar">
+    <h1>سياسة الخصوصية</h1>
+    <p class="updated">آخر تحديث: 15 نوفمبر 2026</p>
+
+    <p>تخص هذه السياسة هذا الموقع والمساعدين التجريبيين الثلاثة الذين تشغلهم GalyAI (عمر الجالي) من المنصورة في مصر: <b>Galy Fashion</b> على واتساب، و<b>Dr. Galy Clinic</b> على موقع العيادة، و<b>Coach Galy</b> على تيليجرام. الثلاثة مشاريع تجريبية للعرض: لا يباع فيها شيء ولا يشحن، ولا يحصل أي مبلغ، والعيادة افتراضية.</p>
+
+    <p class="callout"><b>من فضلك لا ترسل بيانات شخصية حقيقية.</b> هذه مشاريع تجريبية، ويمكنك استخدام اسم ورقم هاتف وعنوان غير حقيقية وأنت تجرب الطلب أو الحجز.</p>
+
+    <h2>هذا الموقع</h2>
+    <ul>
+      <li>لا يستخدم ملفات تعريف الارتباط (cookies) ولا أدوات لتتبع الزوار، وليس فيه نماذج.</li>
+      <li>يحفظ في متصفحك اللغة التي اخترتها فقط.</li>
+      <li>الخطوط تحمل من Google Fonts، والموقع مستضاف على GitHub Pages. كل منهما يستقبل عنوان IP الخاص بك كما في أي زيارة لموقع، وقد يسجله.</li>
+    </ul>
+
+    <h2>ما الذي يجمعه كل مساعد</h2>
+    <h3>Galy Fashion (واتساب)</h3>
+    <ul>
+      <li>رقم واتساب الخاص بك واسم ملفك الشخصي، ويرسلهما واتساب مع كل رسالة.</li>
+      <li>الرسائل التي ترسلها والردود التي تصلك، وتحفظ سجلا للمحادثة.</li>
+      <li>ما تكتبه وأنت تجرب: في الطلب اسم ورقم هاتف ومدينة وعنوان، وفي الاسترجاع القطعة وسبب إرجاعها.</li>
+    </ul>
+    <h3>Dr. Galy Clinic (موقع العيادة)</h3>
+    <ul>
+      <li>رمز عشوائي للمحادثة يحفظ في متصفحك مع نسخة من المحادثة، حتى تجدها عند عودتك.</li>
+      <li>الرسائل التي ترسلها والردود التي تصلك.</li>
+      <li>ما تكتبه وأنت تجرب الحجز: اسم المريض وسنه ورقم الهاتف، واسم ولي الأمر إذا كان الحجز لطفل، والخدمة والتاريخ والوقت.</li>
+    </ul>
+    <h3>Coach Galy (تيليجرام)</h3>
+    <ul>
+      <li>معرف حسابك على تيليجرام والاسم الظاهر فيه، ويرسلهما تيليجرام مع كل رسالة.</li>
+      <li>الرسائل التي ترسلها والردود التي تصلك.</li>
+      <li>ما تذكره عن نفسك: الاسم والوزن والهدف. وإذا ذكرت حالة صحية توقف إرسال الخطة، يسجل سببها باختصار.</li>
+    </ul>
+
+    <h2>لماذا تجمع</h2>
+    <p>لتشغيل المحادثة والتجربة فقط. بياناتك لا تباع ولا تستخدم في الإعلانات، والمساعدون لا يبدؤون مراسلتك. تطلع GalyAI على المحادثات لمتابعة التجربة وإصلاح الأخطاء، ويصلها تنبيه على تيليجرام عند بدء محادثة جديدة (مع أول سطر منها) وعند حدوث عطل.</p>
+
+    <h2>من يعالجها</h2>
+    <ul>
+      <li><b>واتساب (Meta)</b> يوصل رسائل Galy Fashion.</li>
+      <li><b>تيليجرام</b> يوصل رسائل Coach Galy وتنبيهات GalyAI.</li>
+      <li><b>Cloudflare</b> يستضيف صفحة العيادة.</li>
+      <li><b>Supabase</b> يخزن المحادثات والطلبات والحجوزات وبيانات المتدربين.</li>
+      <li><b>نموذج ذكاء اصطناعي عبر OpenRouter</b> يستقبل نص المحادثة ليكتب كل رد.</li>
+      <li><b>OpenAI</b> يستقبل نص سؤالك ليبحث عما يخصه في ملف معلومات النشاط.</li>
+      <li><b>خادم التشغيل (n8n)</b> تديره GalyAI، وتمر به الرسائل وقد تبقى في سجلات تشغيله.</li>
+    </ul>
+
+    <h2>مدة الحفظ</h2>
+    <p>إلى أن تطلب حذفها، أو إلى أن يغلق المشروع التجريبي.</p>
+
+    <h2>اختياراتك</h2>
+    <p>راسل <a href="mailto:galy.automation@gmail.com">galy.automation@gmail.com</a> من أي عنوان، واذكر رقم واتساب الذي استخدمته، أو اسم حسابك على تيليجرام، أو رقم الهاتف الذي حجزت به في العيادة، لتحصل على نسخة من بياناتك أو تطلب حذفها.</p>
+  </div>
+
   <div data-lang="en">
     <h1>Privacy policy</h1>
-    <p class="date">Last updated 22 September 2026</p>
+    <p class="updated">Last updated 15 November 2026</p>
 
-    <p>This policy covers the <b>Galy Fashion</b> demo chatbot on WhatsApp, run by Omar Galy (Galy AI), Mansoura, Egypt. Galy Fashion is a demonstration shop: nothing is sold or shipped and no payment is taken.</p>
+    <p>This policy covers this website and the three demo assistants run by GalyAI (Omar Galy), Mansoura, Egypt: <b>Galy Fashion</b> on WhatsApp, <b>Dr. Galy Clinic</b> on the clinic's web page, and <b>Coach Galy</b> on Telegram. All three are demonstrations: nothing is sold or shipped, no payment is taken, and the clinic is fictional.</p>
 
-    <p class="note"><b>Please don't send real personal details.</b> Because this is a demo, you can use a made-up name, phone number and address when you try an order.</p>
+    <p class="callout"><b>Please don't send real personal details.</b> These are demos, and you can use a made-up name, phone number and address when you try an order or a booking.</p>
 
-    <h2>What is collected</h2>
+    <h2>This website</h2>
+    <ul>
+      <li>It uses no cookies and no visitor tracking, and it has no forms.</li>
+      <li>It saves only your language choice, in your browser.</li>
+      <li>Fonts load from Google Fonts and the site is hosted on GitHub Pages. Each receives your IP address, as with any website visit, and may log it.</li>
+    </ul>
+
+    <h2>What each assistant collects</h2>
+    <h3>Galy Fashion (WhatsApp)</h3>
     <ul>
       <li>Your WhatsApp phone number and profile name, which WhatsApp sends with every message.</li>
       <li>The messages you send and the replies you receive, kept as a conversation log.</li>
       <li>What you type while trying the demo: for an order, a name, phone number, city and address; for a return, which item and why.</li>
     </ul>
+    <h3>Dr. Galy Clinic (the clinic's web page)</h3>
+    <ul>
+      <li>A random chat code saved in your browser, with a copy of the chat, so you find it when you come back.</li>
+      <li>The messages you send and the replies you receive.</li>
+      <li>What you type while trying a booking: the patient's name, age and phone number, a guardian's name when the booking is for a child, and the service, date and time.</li>
+    </ul>
+    <h3>Coach Galy (Telegram)</h3>
+    <ul>
+      <li>Your Telegram account ID and display name, which Telegram sends with every message.</li>
+      <li>The messages you send and the replies you receive.</li>
+      <li>What you say about yourself: name, weight and goal. If you mention a health condition that stops the plan from being sent, a short reason is recorded.</li>
+    </ul>
 
     <h2>Why</h2>
-    <p>Only to run the conversation and the demo order flow. Your data is not sold, not used for advertising, and the bot never messages you first.</p>
+    <p>Only to run the conversation and the demo. Your data is not sold or used for advertising, and the assistants never message you first. GalyAI reads the conversations to follow the demo and fix faults, and gets a Telegram alert when a new conversation starts (with its first line) and when something fails.</p>
 
     <h2>Who handles it</h2>
     <ul>
-      <li><b>WhatsApp (Meta)</b> delivers the messages.</li>
-      <li><b>Supabase</b> stores the conversation and the demo orders.</li>
-      <li>An <b>AI model, reached through OpenRouter</b>, receives the text of the conversation in order to write each reply.</li>
+      <li><b>WhatsApp (Meta)</b> delivers Galy Fashion's messages.</li>
+      <li><b>Telegram</b> delivers Coach Galy's messages and GalyAI's alerts.</li>
+      <li><b>Cloudflare</b> hosts the clinic's page.</li>
+      <li><b>Supabase</b> stores the conversations, orders, bookings and trainee details.</li>
+      <li><b>An AI model, reached through OpenRouter</b>, receives the text of the conversation in order to write each reply.</li>
+      <li><b>OpenAI</b> receives the text of your question in order to search the business's information file for what it needs.</li>
+      <li><b>The workflow server (n8n)</b> is run by GalyAI; messages pass through it and may stay in its run logs.</li>
     </ul>
 
     <h2>How long it is kept</h2>
     <p>Until you ask for it to be deleted, or until the demo is shut down.</p>
 
     <h2>Your choices</h2>
-    <p>Email <a href="mailto:galy.automation@gmail.com">galy.automation@gmail.com</a> from any address, with the WhatsApp number you used, to get a copy of your data or have it deleted.</p>
-  </div>
-
-
-  <!-- Arabic -->
-  <div data-lang="ar">
-    <h1>سياسة الخصوصية</h1>
-    <p class="date">آخر تحديث: 22 سبتمبر 2026</p>
-
-    <p>السياسة دي خاصة بالشات بوت التجريبي <b>Galy Fashion</b> على واتساب، واللي بيشغله عمر الجالي (Galy AI) من المنصورة، مصر. Galy Fashion متجر تجريبي: مفيش حاجة بتتباع أو بتتشحن ومفيش أي دفع.</p>
-
-    <p class="note"><b>من فضلك متبعتش بيانات شخصية حقيقية.</b> عشان ده متجر تجريبي، تقدر تستخدم اسم ورقم تليفون وعنوان من خيالك وانت بتجرب الطلب.</p>
-
-    <h2>بنجمع إيه</h2>
-    <ul>
-      <li>رقم واتساب بتاعك واسم البروفايل، واللي واتساب بيبعتهم مع كل رسالة.</li>
-      <li>الرسايل اللي بتبعتها والردود اللي بتوصلك، ومتسجلة كسجل للمحادثة.</li>
-      <li>اللي بتكتبه وانت بتجرب: في الطلب اسم ورقم تليفون ومدينة وعنوان، وفي الاسترجاع القطعة وسبب رجوعها.</li>
-    </ul>
-
-    <h2>ليه</h2>
-    <p>عشان نشغّل المحادثة وتجربة الطلب بس. بياناتك مش بتتباع ومش بتستخدم في إعلانات، والبوت عمره ما بيبعتلك الأول.</p>
-
-    <h2>مين بيتعامل معاها</h2>
-    <ul>
-      <li><b>واتساب (Meta)</b> بيوصّل الرسايل.</li>
-      <li><b>Supabase</b> بيخزن المحادثة وطلبات التجربة.</li>
-      <li><b>نموذج ذكاء اصطناعي عن طريق OpenRouter</b> بيستلم نص المحادثة عشان يكتب كل رد.</li>
-    </ul>
-
-    <h2>بتتحفظ لحد إمتى</h2>
-    <p>لحد ما تطلب مسحها، أو لحد ما التجربة تتقفل.</p>
-
-    <h2>حقك</h2>
-    <p>ابعت إيميل على <a href="mailto:galy.automation@gmail.com">galy.automation@gmail.com</a> من أي عنوان، ومعاه رقم الواتساب اللي استخدمته، عشان تاخد نسخة من بياناتك أو تطلب مسحها.</p>
+    <p>Email <a href="mailto:galy.automation@gmail.com">galy.automation@gmail.com</a> from any address, with the WhatsApp number you used, your Telegram username, or the phone number you booked with at the clinic, to get a copy of your data or have it deleted.</p>
   </div>
 </main>
 
 <footer>
   <div class="container">
-    <span>© 2026 Omar Galy · Galy AI</span>
-    <a href="index.html"><span data-lang="en">Back to home</span><span data-lang="ar">الرجوع للرئيسية</span></a>
+    <span>© 2026 GalyAI</span>
+    <a href="index.html"><span data-lang="ar">الرجوع إلى الرئيسية</span><span data-lang="en">Back to home</span></a>
   </div>
 </footer>
 
-<script>
-  (function () {
-    var root = document.documentElement;
-    function set(lang) {
-      root.lang = lang;
-      root.dir = lang === "ar" ? "rtl" : "ltr";
-      try { localStorage.setItem("lang", lang); } catch (e) {}
-    }
-    var saved = null;
-    try { saved = localStorage.getItem("lang"); } catch (e) {}
-    if (saved === "ar" || saved === "en") set(saved);
-    else if ((navigator.language || "").slice(0, 2) === "ar") set("ar");
-    document.getElementById("lang").addEventListener("click", function () {
-      set(root.lang === "ar" ? "en" : "ar");
-    });
-  })();
-</script>
+<script src="site.js"></script>
 </body>
 </html>
