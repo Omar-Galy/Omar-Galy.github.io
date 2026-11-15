@@ -11,6 +11,7 @@
     var title = document.querySelector('meta[name="title-' + lang + '"]');
     if (title) document.title = title.content;
     try { localStorage.setItem("lang", lang); } catch (e) {}
+    if (typeof label === "function") label();
   }
   // Arabic is the default; English only when the visitor chose it.
   var saved = null;
@@ -23,6 +24,31 @@
     if (document.startViewTransition && !calm) document.startViewTransition(function () { set(next); });
     else set(next);
   });
+
+  // Night mode: follows the device until the visitor picks one, then remembers the choice.
+  var themeBtn = document.getElementById("theme");
+  var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  function isDark() {
+    var t = root.getAttribute("data-theme");
+    return t ? t === "dark" : darkQuery.matches;
+  }
+  function label() {
+    if (!themeBtn) return;
+    var dark = isDark(), en = root.lang === "en";
+    themeBtn.setAttribute("aria-label", dark ? (en ? "Day mode" : "الوضع النهاري") : (en ? "Night mode" : "الوضع الليلي"));
+    themeBtn.setAttribute("aria-pressed", dark ? "true" : "false");
+  }
+  if (themeBtn) {
+    label();
+    themeBtn.addEventListener("click", function () {
+      var next = isDark() ? "light" : "dark";
+      function apply() { root.setAttribute("data-theme", next); label(); }
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      if (document.startViewTransition && !calm) document.startViewTransition(apply);
+      else apply();
+    });
+    if (darkQuery.addEventListener) darkQuery.addEventListener("change", label);
+  }
 
   document.querySelectorAll("[data-mostaql]").forEach(function (link) {
     if (MOSTAQL_URL) { link.href = MOSTAQL_URL; link.hidden = false; }
@@ -133,6 +159,7 @@
     },
     clinic: {
       button: both("تأكيد الحجز", "Confirm booking"),
+      auto: true, // only the home chat waits for the visitor; this one presses its own button
       script: [
         { out: true, who: PATIENT, html: p("تنظيف الجير بكام؟", "How much is a cleaning?") },
         { who: BOT, html: p("تنظيف الأسنان وإزالة الجير بالموجات فوق الصوتية مع تلميع بـ 350 جنيه للجلسة، ويفضل يتعمل كل 6 شهور.",
@@ -198,8 +225,8 @@
     var data = CHATS[key];
     if (!data) return;
     var body = chat.querySelector(".chat-body");
-    // The project pages' chats can be scrolled back through; the home one stays a fixed window.
-    var scrolls = key !== "order";
+    // Every chat can be scrolled back through.
+    var scrolls = true;
     if (scrolls) body.classList.add("scroll");
     // Keeps the newest message in view while rows open, unless the visitor has scrolled up to read.
     var stuck = true, following = 0;
@@ -223,7 +250,8 @@
       var el = document.createElement("div");
       el.className = "msg" + (m.out ? " out" : "");
       var html = "<div>" + (m.who ? '<span class="who">' + m.who + "</span>" : "") + inner(m);
-      if (m.button) html += '<button class="chat-confirm" type="button">' + HAND + data.button + "</button>";
+      if (m.button && data.auto) html += '<span class="chat-confirm pressed" aria-hidden="true">' + data.button + "</span>";
+      else if (m.button) html += '<button class="chat-confirm" type="button">' + HAND + data.button + "</button>";
       el.innerHTML = html + "</div>";
       body.appendChild(el);
       follow();
@@ -254,7 +282,10 @@
               var before = box.offsetHeight;
               holder.innerHTML = m.html;
               holder.classList.add("fresh");
-              if (m.button) {
+              if (m.button && data.auto) {
+                holder.insertAdjacentHTML("afterend", '<span class="chat-confirm shown" aria-hidden="true">' + data.button + "</span>");
+                autoPress(dots.querySelector(".chat-confirm"), mine);
+              } else if (m.button) {
                 holder.insertAdjacentHTML("afterend", '<button class="chat-confirm waiting" type="button">' + HAND + data.button + "</button>");
                 arm(dots.querySelector(".chat-confirm"), mine);
               }
@@ -272,6 +303,19 @@
       return chain;
     }
     function done(mine) { if (mine === run) replay.classList.add("on"); }
+    // Shows the press without the visitor: the button dips, greys out, and the chat carries on.
+    function autoPress(btn, mine) {
+      wait(1900).then(function () {
+        if (mine !== run) return;
+        btn.classList.add("pressing");
+        return wait(260).then(function () {
+          if (mine !== run) return;
+          btn.classList.remove("pressing", "shown");
+          btn.classList.add("pressed");
+          return play(data.after, mine).then(function () { done(mine); });
+        });
+      });
+    }
     function arm(btn, mine) {
       btn.addEventListener("click", function () {
         if (mine !== run) return;
@@ -293,7 +337,8 @@
       // No motion: the whole chat is on the page at once, and a button still works.
       chat.classList.add("still");
       data.script.forEach(function (m) { add(m, true); });
-      var still = body.querySelector(".chat-confirm");
+      if (data.auto) { data.after.forEach(function (m) { add(m, true); }); return; }
+      var still = body.querySelector("button.chat-confirm");
       if (still) {
         still.classList.add("waiting");
         still.addEventListener("click", function () {

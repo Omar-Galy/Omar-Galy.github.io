@@ -1,5 +1,5 @@
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   --bg: #ffffff;
   --surface: #f2f7f4;
   --tint: #e8f1ec;
@@ -30,6 +30,8 @@
   /* Chat bubbles */
   --bubble-in: #ffffff;
   --bubble-out: #d7ecdf;
+  --bubble-out-line: #c2dfcf;
+  --shadow: rgba(11, 42, 33, .45);
   /* Motion: one curve and three speeds for the whole site */
   --ease: cubic-bezier(.22, 1, .36, 1);
   --fast: .18s;
@@ -63,6 +65,51 @@ img { max-width: 100%; height: auto; display: block; }
 .container { max-width: 1080px; margin: 0 auto; padding-inline: 24px; }
 .narrow { max-width: 760px; }
 @media (max-width: 480px) { .container { padding-inline: 16px; } }
+
+/* Night mode: follows the device until the visitor picks one with the switch in the header. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+  color-scheme: dark;
+    --bg: #0f1a16;
+    --surface: #15241e;
+    --tint: #1b2d26;
+    --border: #293d34;
+    --text: #e4eee8;
+    --text-2: #9fb5aa;
+    --accent: #5cc79f;
+    --accent-hover: #7fd6b5;
+    --on-accent: #07211a;
+    --ink: #0a1411;
+    --ink-line: #22362e;
+    --on-ink: #e4eee8;
+    --on-ink-2: #9fb5aa;
+    --bubble-in: #1c2f27;
+    --bubble-out: #1f4a3b;
+    --bubble-out-line: #2a5c4a;
+    --shadow: rgba(0, 0, 0, .6);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0f1a16;
+  --surface: #15241e;
+  --tint: #1b2d26;
+  --border: #293d34;
+  --text: #e4eee8;
+  --text-2: #9fb5aa;
+  --accent: #5cc79f;
+  --accent-hover: #7fd6b5;
+  --on-accent: #07211a;
+  --ink: #0a1411;
+  --ink-line: #22362e;
+  --on-ink: #e4eee8;
+  --on-ink-2: #9fb5aa;
+  --bubble-in: #1c2f27;
+  --bubble-out: #1f4a3b;
+  --bubble-out-line: #2a5c4a;
+  --shadow: rgba(0, 0, 0, .6);
+}
+:root[data-theme="light"] { color-scheme: light; }
 
 /* Arabic shows by default and without JavaScript. */
 [data-lang="en"] { display: none; }
@@ -158,7 +205,7 @@ html[lang="en"] h1 { letter-spacing: -0.025em; line-height: 1.08; }
 }
 
 /* The chat in the hero: a short example that plays once, then waits for the visitor's press. */
-.chat { border: 1px solid var(--border); border-radius: 20px; background: var(--surface); overflow: hidden; box-shadow: 0 30px 60px -40px rgba(11, 42, 33, .45); }
+.chat { border: 1px solid var(--border); border-radius: 20px; background: var(--surface); overflow: hidden; box-shadow: 0 30px 60px -40px var(--shadow); }
 .chat-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 18px; background: var(--bg); border-bottom: 1px solid var(--border); }
 .chat-head b { display: block; font-weight: 600; font-size: 16px; line-height: 1.4; }
 .chat-head span { color: var(--text-2); font-size: 13.5px; }
@@ -175,7 +222,7 @@ html[lang="en"] h1 { letter-spacing: -0.025em; line-height: 1.08; }
 .who { color: var(--text-2); font-size: 12.5px; margin: 10px 6px 3px; }
 .bubble { max-width: 88%; padding: 9px 14px; border-radius: 16px; border-start-start-radius: 5px; background: var(--bubble-in); border: 1px solid var(--border); font-size: 15px; line-height: 1.65; opacity: 0; transform: translateY(10px) scale(.97); transform-origin: 0 100%; transition: opacity .35s ease .1s, transform .5s var(--ease) .1s; }
 html[lang="en"] .bubble { line-height: 1.5; }
-.msg.out .bubble { background: var(--bubble-out); border-color: #c2dfcf; border-start-start-radius: 16px; border-start-end-radius: 5px; }
+.msg.out .bubble { background: var(--bubble-out); border-color: var(--bubble-out-line); border-start-start-radius: 16px; border-start-end-radius: 5px; }
 .msg.in .bubble { opacity: 1; transform: none; }
 .bubble + .bubble { margin-top: 4px; }
 .bubble + .chat-confirm { margin-top: 8px; }
@@ -253,7 +300,7 @@ html[lang="en"] h2 { letter-spacing: -0.01em; line-height: 1.25; }
 .work-body h3 a::before { content: ""; position: absolute; inset: 0; border-radius: 18px; }
 .work-links { position: relative; z-index: 1; }
 @media (hover: hover) {
-  .work-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); box-shadow: 0 24px 44px -30px rgba(11, 42, 33, .5); }
+  .work-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); box-shadow: 0 24px 44px -30px var(--shadow); }
 }
 .work-card:has(.work-cover.missing) { grid-template-columns: 1fr; }
 .work-cover { aspect-ratio: 4 / 3; background: var(--tint); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
@@ -302,7 +349,7 @@ html[dir="ltr"] :is(.work-links, .others) a { background-position-x: 0; }
 html[lang="en"] .contact h2 { line-height: 1.12; letter-spacing: -0.02em; }
 .contact p { margin: 0; color: var(--on-ink-2); }
 #contact .btn-primary { background: var(--on-ink); border-color: var(--on-ink); color: var(--ink); }
-#contact .btn-primary:hover { background: #fff; border-color: #fff; box-shadow: none; }
+#contact .btn-primary:hover { background: color-mix(in srgb, var(--on-ink) 85%, var(--ink)); border-color: transparent; box-shadow: none; }
 #contact .btn-secondary { background: transparent; border-color: var(--ink-line); color: var(--on-ink); }
 #contact .btn-secondary:hover { border-color: var(--on-ink-2); }
 #contact :focus-visible, footer :focus-visible { outline-color: var(--on-ink); }
@@ -345,7 +392,7 @@ footer a:hover { color: var(--on-ink); }
 .shot.missing img { display: none; }
 .shot.missing::before {
   content: attr(data-file); display: flex; align-items: center; justify-content: center;
-  aspect-ratio: 9 / 16; border: 1px dashed #94a3b8; border-radius: 12px; background: var(--tint);
+  aspect-ratio: 9 / 16; border: 1px dashed var(--text-2); border-radius: 12px; background: var(--tint);
   color: var(--text-2); font: 14px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; direction: ltr; padding: 12px; text-align: center;
 }
 .shot.wide.missing::before { aspect-ratio: 16 / 7; }
@@ -404,3 +451,30 @@ footer a:hover { color: var(--on-ink); }
 .msg.out + .msg:not(.out) > div, .msg:not(.out) + .msg.out > div { padding-top: 4px; }
 .bubble ol { margin: 0; padding-inline-start: 20px; }
 .bubble li + li { margin-top: 2px; }
+
+/* The night mode switch: a moon by day, a sun by night */
+.theme-btn { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-inline-start: 4px; border: 0; border-radius: 50%; background: none; color: var(--text-2); cursor: pointer; transition: color var(--fast) ease, background-color var(--fast) ease; }
+.theme-btn:hover { color: var(--text); background: var(--tint); }
+.theme-btn svg { width: 19px; height: 19px; transition: transform var(--mid) var(--ease); }
+.theme-btn:hover svg { transform: rotate(-20deg); }
+.theme-btn .sun { display: none; }
+:root[data-theme="dark"] .theme-btn .sun { display: block; }
+:root[data-theme="dark"] .theme-btn .moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .theme-btn .sun { display: block; }
+  :root:not([data-theme]) .theme-btn .moon { display: none; }
+}
+@media (max-width: 380px) { .theme-btn { margin-inline-start: 0; } .lang-btn { margin-inline-start: 2px; } }
+
+/* The demo clock, under the store's try-it button */
+.clock { display: flex; gap: 12px; align-items: flex-start; margin-top: 24px; padding: 14px 18px; max-width: 36em; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; }
+.clock svg { width: 20px; height: 20px; flex: none; margin-top: 4px; color: var(--accent); }
+.clock p { margin: 0; color: var(--text-2); font-size: 15px; line-height: 1.75; }
+html[lang="en"] .clock p { line-height: 1.55; }
+.clock b { color: var(--text); font-weight: 600; }
+
+/* A button the chat presses by itself: not clickable, it dips and greys like a real press. */
+span.chat-confirm { cursor: default; pointer-events: none; }
+.chat-confirm.shown { background: var(--accent); border-color: var(--accent); color: var(--on-accent); animation: fade .45s ease both; }
+.chat-confirm.pressing { transform: scale(.95); }
+.chat-confirm.pressed { background: var(--tint); border-color: var(--border); color: var(--text-2); }
