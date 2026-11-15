@@ -394,3 +394,8 @@ footer a:hover { color: var(--on-ink); }
 /* Project pages: three facts in a row with even gaps */
 .hero-facts.few .facts { grid-template-columns: repeat(3, auto); justify-content: start; gap: 0 72px; }
 .flow { margin-top: 0; }
+/* A chat the visitor can scroll back through. The first message is pushed to the bottom
+   with an auto margin (not flex-end), so the earliest ones stay reachable. */
+.chat-body.scroll { overflow-y: auto; justify-content: flex-start; padding-top: 40px; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--border) transparent; -webkit-overflow-scrolling: touch; }
+.chat-body.scroll > :first-child { margin-top: auto; }
+.chat.still .chat-body.scroll { height: 468px; }

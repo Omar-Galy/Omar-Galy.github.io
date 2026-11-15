@@ -171,9 +171,28 @@
   function wait(ms) { return new Promise(function (ok) { setTimeout(ok, ms); }); }
 
   document.querySelectorAll("[data-chat]").forEach(function (chat) {
-    var data = CHATS[chat.getAttribute("data-chat")];
+    var key = chat.getAttribute("data-chat");
+    var data = CHATS[key];
     if (!data) return;
     var body = chat.querySelector(".chat-body");
+    // The project pages' chats can be scrolled back through; the home one stays a fixed window.
+    var scrolls = key !== "order";
+    if (scrolls) body.classList.add("scroll");
+    // Keeps the newest message in view while rows open, unless the visitor has scrolled up to read.
+    var stuck = true, following = 0;
+    if (scrolls) body.addEventListener("scroll", function () {
+      if (!following) stuck = body.scrollHeight - body.scrollTop - body.clientHeight < 40;
+    }, { passive: true });
+    function follow() {
+      if (!scrolls || !stuck) return;
+      var until = performance.now() + 650;
+      following += 1;
+      (function step() {
+        body.scrollTop = body.scrollHeight;
+        if (performance.now() < until) requestAnimationFrame(step);
+        else following -= 1;
+      })();
+    }
     var replay = chat.querySelector(".chat-replay");
     var run = 0;
 
@@ -184,6 +203,7 @@
       if (m.button) html += '<button class="chat-confirm" type="button">' + HAND + data.button + "</button>";
       el.innerHTML = html + "</div>";
       body.appendChild(el);
+      follow();
       if (instant) el.classList.add("in", "open");
       else {
         requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.add("in"); }); });
@@ -221,6 +241,7 @@
               box.offsetHeight; // apply the starting height before the change
               box.style.transition = "height .5s var(--ease)";
               box.style.height = after + "px";
+              follow();
               setTimeout(function () { box.style.height = ""; box.style.transition = ""; dots.classList.add("open"); }, 560);
             });
         });
@@ -240,6 +261,7 @@
       run += 1;
       var mine = run;
       body.innerHTML = "";
+      stuck = true;
       replay.classList.remove("on");
       play(data.script, mine).then(function () { if (!data.after) done(mine); });
     }
