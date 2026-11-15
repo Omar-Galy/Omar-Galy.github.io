@@ -24,7 +24,7 @@
   // A screenshot whose file is not in img/ yet: show its file name in the frame instead.
   document.querySelectorAll(".shot img, .work-cover img").forEach(function (img) {
     function missing() {
-      var frame = img.parentElement;
+      var frame = img.closest(".shot, .work-cover");
       frame.classList.add("missing");
       frame.setAttribute("data-file", img.getAttribute("src"));
     }
