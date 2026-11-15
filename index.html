@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@600;700&family=Readex+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<script>(function(d){d.classList.add("js");try{if(localStorage.getItem("lang")==="en"){d.lang="en";d.dir="ltr"}}catch(e){}})(document.documentElement)</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -35,7 +36,7 @@
 
 <main id="main">
   <div class="container hero">
-    <div>
+    <div class="hero-copy">
       <h1>
         <span data-lang="ar">مساعدون للمحادثة يردون على عملائك ويسجلون الطلبات والحجوزات</span>
         <span data-lang="en">Chat assistants that answer your customers and take their orders and bookings</span>
@@ -59,6 +60,16 @@
       </div>
     </div>
 
+    <div class="chat" data-chat>
+      <div class="chat-head">
+        <div><b>Galy Fashion</b><span><span data-lang="ar">مثال مختصر لطلب على واتساب</span><span data-lang="en">A short example of an order on WhatsApp</span></span></div>
+        <button class="chat-replay" type="button" aria-label="Replay the example"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></button>
+      </div>
+      <div class="chat-body" aria-live="off"></div>
+    </div>
+  </div>
+
+  <div class="container hero-facts">
     <dl class="facts">
       <div><dt><span data-lang="ar">المقر</span><span data-lang="en">Based in</span></dt><dd><span data-lang="ar">المنصورة، مصر</span><span data-lang="en">Mansoura, Egypt</span></dd></div>
       <div><dt><span data-lang="ar">القنوات</span><span data-lang="en">Channels</span></dt><dd><span data-lang="ar">واتساب، تيليجرام، إنستجرام، ماسنجر، مواقع الويب</span><span data-lang="en">WhatsApp, Telegram, Instagram, Messenger, websites</span></dd></div>
@@ -98,7 +109,7 @@
           <div class="work-cover"><img src="img/store-chat-1.png" alt="" loading="lazy"></div>
           <div class="work-body">
             <p class="work-kind"><span data-lang="ar">متجر ملابس على واتساب</span><span data-lang="en">Clothing shop on WhatsApp</span></p>
-            <h3><a href="galy-fashion.html">Galy Fashion</a></h3>
+            <h3 class="vt-store"><a href="galy-fashion.html">Galy Fashion</a></h3>
             <p><span data-lang="ar">متجر ملابس رجالية يعمل بالكامل داخل واتساب.</span><span data-lang="en">A men's clothing shop that runs entirely inside WhatsApp.</span></p>
             <ul>
               <li><span data-lang="ar">يعرض المنتجات ويرسل صورها</span><span data-lang="en">Shows products and sends their photos</span></li>
@@ -116,7 +127,7 @@
           <div class="work-cover"><img src="img/clinic-chat-1.png" alt="" loading="lazy"></div>
           <div class="work-body">
             <p class="work-kind"><span data-lang="ar">عيادة أسنان على الويب</span><span data-lang="en">Dental clinic on the web</span></p>
-            <h3><a href="dr-galy-clinic.html">Dr. Galy Clinic</a></h3>
+            <h3 class="vt-clinic"><a href="dr-galy-clinic.html">Dr. Galy Clinic</a></h3>
             <p><span data-lang="ar">مساعد على موقع العيادة يجيب المرضى ويحجز مواعيدهم.</span><span data-lang="en">An assistant on the clinic's website that answers patients and books their appointments.</span></p>
             <ul>
               <li><span data-lang="ar">يجيب عن الخدمات والأسعار من معلومات العيادة</span><span data-lang="en">Answers about services and prices from the clinic's own information</span></li>
@@ -134,7 +145,7 @@
           <div class="work-cover"><img src="img/coach-chat-1.png" alt="" loading="lazy"></div>
           <div class="work-body">
             <p class="work-kind"><span data-lang="ar">مدرب لياقة على تيليجرام</span><span data-lang="en">Fitness coach on Telegram</span></p>
-            <h3><a href="coach-galy.html">Coach Galy</a></h3>
+            <h3 class="vt-coach"><a href="coach-galy.html">Coach Galy</a></h3>
             <p><span data-lang="ar">مساعد يعمل نيابة عن مدرب اللياقة مع المتدربين.</span><span data-lang="en">An assistant that works with trainees on a fitness coach's behalf.</span></p>
             <ul>
               <li><span data-lang="ar">يسجل اسم المتدرب ووزنه وهدفه</span><span data-lang="en">Records the trainee's name, weight and goal</span></li>
@@ -194,6 +205,6 @@
   </div>
 </footer>
 
-<script src="site.js"></script>
+<script src="site.js" onerror="document.documentElement.classList.remove('js')"></script>
 </body>
 </html>

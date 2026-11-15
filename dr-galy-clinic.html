@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fustat:wght@600;700&family=Readex+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<script>(function(d){d.classList.add("js");try{if(localStorage.getItem("lang")==="en"){d.lang="en";d.dir="ltr"}}catch(e){}})(document.documentElement)</script>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -38,7 +39,7 @@
   <div class="container case-hero">
     <div>
       <p class="case-kind"><span data-lang="ar">عيادة أسنان على الويب</span><span data-lang="en">Dental clinic on the web</span></p>
-      <h1>Dr. Galy Clinic</h1>
+      <h1 class="vt-clinic">Dr. Galy Clinic</h1>
       <p class="intro"><span data-lang="ar">مساعد داخل موقع عيادة أسنان: يجيب المرضى عن الخدمات والأسعار والأطباء، ويحجز الموعد ويلغيه من المحادثة نفسها.</span><span data-lang="en">An assistant inside a dental clinic's website: it answers patients about services, prices and doctors, and books or cancels an appointment in the same chat.</span></p>
       <div class="actions">
         <a class="btn btn-primary" href="https://dr-galy-clinic.pages.dev" rel="noopener">
@@ -132,6 +133,6 @@
   </div>
 </footer>
 
-<script src="site.js"></script>
+<script src="site.js" onerror="document.documentElement.classList.remove('js')"></script>
 </body>
 </html>
