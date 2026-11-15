@@ -142,6 +142,8 @@
       ]
     },
     store: {
+      button: both("تأكيد الإلغاء", "Confirm cancellation"),
+      auto: true,
       script: [
         { out: true, who: CUSTOMER, html: p("عندكم جاكيت جينز؟ عايز أشوف صوره", "Do you have a denim jacket? I'd like to see photos") },
         { who: BOT, html: p("أيوه، جاكيت الجينز بـ 1250 جنيه، متاح أزرق دنيم وأسود بمقاسات S لـ XXL. تحب أجهزهولك؟",
@@ -153,6 +155,12 @@
         { out: true, html: p('طلبي اللي قبل كده <span dir="ltr">GF-1038</span> وصل لفين؟', "Where's my earlier order, GF-1038?") },
         { who: BOT, html: p('طلبك <span dir="ltr">GF-1038</span> اتشحن، وهيوصلك خلال يومين. المندوب هيتصل بيك قبل ما يوصل.',
                             "Your order GF-1038 has shipped and will reach you within 2 days. The courier will call you before arriving.") },
+        { out: true, html: p('وعندي طلب تاني <span dir="ltr">GF-1041</span> عايز ألغيه', "And I have another order, GF-1041, that I want to cancel") },
+        { who: BOT, button: true, html: p('طلب <span dir="ltr">GF-1041</span> لسه ما اتشحنش، فينفع يتلغي. لو متأكد اضغط زرار التأكيد تحت.',
+                                          "Order GF-1041 hasn't shipped yet, so it can be cancelled. If you're sure, press the confirm button below.") }
+      ],
+      after: [
+        { who: BOT, html: p('تم إلغاء الطلب رقم <span dir="ltr">GF-1041</span>', "Order GF-1041 is cancelled") },
         { out: true, html: p("طب عايز أكلم حد من المتجر", "I'd like to talk to someone at the shop") },
         { who: BOT, html: p('تقدر تكلم فريق المتجر على واتساب <span dir="ltr">01037800929</span>.', "You can reach the shop's team on WhatsApp at 01037800929.") }
       ]
@@ -164,6 +172,9 @@
         { out: true, who: PATIENT, html: p("تنظيف الجير بكام؟", "How much is a cleaning?") },
         { who: BOT, html: p("تنظيف الأسنان وإزالة الجير بالموجات فوق الصوتية مع تلميع بـ 350 جنيه للجلسة، ويفضل يتعمل كل 6 شهور.",
                             "Cleaning and scaling with ultrasound, plus polishing, is 350 EGP a session, and is best done every six months.") },
+        { out: true, html: p("وبتفتحوا امتى؟", "And when are you open?") },
+        { who: BOT, html: p("من السبت للخميس، من 11 الصبح لحد 9 بالليل. الجمعة إجازة إلا حالات الطوارئ بموعد مسبق.",
+                            "Saturday to Thursday, 11 am to 9 pm. Friday is off except for emergencies by appointment.") },
         { out: true, html: p("طيب عايز أحجز يوم الأربعاء بعد العصر", "OK, I'd like to book on Wednesday afternoon") },
         { who: BOT, html: p("المتاح يوم " + DAY_AR + " بعد العصر: 4 مساء، 5 مساء، 7 مساء. تحب أنهي ميعاد؟ وابعتلي اسمك بالكامل وسنك ورقم تليفونك.",
                             "Free on " + DAY_EN + " afternoon: 4 pm, 5 pm and 7 pm. Which one suits you? And send me your full name, age and phone number.") },
@@ -183,7 +194,10 @@
             "<p><b>" + both("تنظيف وإزالة الجير", "Cleaning and scaling") + "</b><br>" + both(DAY_AR + "، 5 مساء", DAY_EN + ", 5 pm") + "</p>" },
         { out: true, html: p("العيادة فين بالظبط؟", "Where exactly is the clinic?") },
         { who: BOT, html: p("15 شارع التحرير، الدور الثالث، المهندسين، الجيزة، أمام محطة المترو.",
-                            "15 El-Tahrir St., third floor, Mohandessin, Giza, opposite the metro station.") }
+                            "15 El-Tahrir St., third floor, Mohandessin, Giza, opposite the metro station.") },
+        { out: true, html: p("وابني عنده 7 سنين، كشف الأطفال بكام؟", "And my son is 7. How much is a children's check-up?") },
+        { who: BOT, html: p("كشف الأطفال بـ 150 جنيه، وولي الأمر هو اللي بيحجز للطفل. تحب أحجزله؟",
+                            "A children's check-up is 150 EGP, and a parent books it for the child. Shall I book one for him?") }
       ]
     },
     coach: {
@@ -206,9 +220,18 @@
             ["اعصر اللاتس تحت.", "Squeeze your lats at the bottom."],
             ["رجع البار بتحكم وما تسيبوش يشد دراعك.", "Let the bar back up under control; don't let it yank your arms."]
           ].map(function (s) { return "<li>" + both(s[0], s[1]) + "</li>"; }).join("") + "</ol>" },
+        { out: true, html: p("مش بحب الفراخ، أبدلها بإيه؟", "I don't like chicken. What can I swap it for?") },
+        { who: BOT, html: "<p>" + both("بدل كل 100 جرام صدور فراخ:", "Instead of every 100 g of chicken breast:") + "</p><ol>" + [
+            ["100 جرام صدور رومي", "100 g turkey breast"],
+            ["أو 130 جرام سمك أبيض", "or 130 g white fish"],
+            ["أو 75 جرام لحمة مفرومة قليلة الدهن", "or 75 g lean minced beef"],
+            ["أو 80 جرام سلمون", "or 80 g salmon"]
+          ].map(function (s) { return "<li>" + both(s[0], s[1]) + "</li>"; }).join("") + "</ol>" },
         { out: true, html: p("لو فوتت حصة النهاردة أعوضها بكرة؟", "If I miss today's session, do I make it up tomorrow?") },
         { who: BOT, html: p("لا، ما تعوضهاش. كمل جدولك عادي، وقلل حوالي 150 جرام من الرز أو البطاطا من أكل النهاردة عشان ما حرقتش طاقة التمرين.",
-                            "No, don't make it up. Carry on with your schedule, and cut about 150 g of rice or potatoes from today's food, since you didn't burn the training energy.") }
+                            "No, don't make it up. Carry on with your schedule, and cut about 150 g of rice or potatoes from today's food, since you didn't burn the training energy.") },
+        { out: true, html: p("عايز أكلم الكوتش نفسه", "I'd like to talk to the coach himself") },
+        { who: BOT, html: p('كلم كوتش جالي على واتساب <span dir="ltr">01037800929</span>.', "Message Coach Galy on WhatsApp at 01037800929.") }
       ]
     }
   };
