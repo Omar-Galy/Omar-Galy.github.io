@@ -11,6 +11,9 @@
   // (everything visible, no chats) instead of leaving parts of it hidden.
   addEventListener("error", function (e) {
     var t = e.target;
-    if ((t && t.tagName === "SCRIPT") || /site\.js/.test(e.filename || "")) d.classList.remove("js");
+    // Only our own site.js counts: Cloudflare may add scripts of its own that the security
+    // rules block, and their failure must not switch the page to the plain version.
+    var own = /\/site\.js(\?|$)/;
+    if ((t && t.tagName === "SCRIPT" && own.test(t.src || "")) || own.test(e.filename || "")) d.classList.remove("js");
   }, true);
 })(document.documentElement);
