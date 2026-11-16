@@ -66,29 +66,8 @@ img { max-width: 100%; height: auto; display: block; }
 .narrow { max-width: 760px; }
 @media (max-width: 480px) { .container { padding-inline: 16px; } }
 
-/* Night mode: follows the device until the visitor picks one with the switch in the header. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-  color-scheme: dark;
-    --bg: #0f1a16;
-    --surface: #15241e;
-    --tint: #1b2d26;
-    --border: #293d34;
-    --text: #e4eee8;
-    --text-2: #9fb5aa;
-    --accent: #5cc79f;
-    --accent-hover: #7fd6b5;
-    --on-accent: #07211a;
-    --ink: #0a1411;
-    --ink-line: #22362e;
-    --on-ink: #e4eee8;
-    --on-ink-2: #9fb5aa;
-    --bubble-in: #1c2f27;
-    --bubble-out: #1f4a3b;
-    --bubble-out-line: #2a5c4a;
-    --shadow: rgba(0, 0, 0, .6);
-  }
-}
+/* Night mode: day mode is the default for everyone; night mode only when the visitor
+   picks it with the switch in the header (remembered by boot.js). */
 :root[data-theme="dark"] {
   color-scheme: dark;
   --bg: #0f1a16;
@@ -464,10 +443,6 @@ html[lang="en"] .panel h2 { line-height: inherit; letter-spacing: 0; }
 .theme-btn .sun { display: none; }
 :root[data-theme="dark"] .theme-btn .sun { display: block; }
 :root[data-theme="dark"] .theme-btn .moon { display: none; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) .theme-btn .sun { display: block; }
-  :root:not([data-theme]) .theme-btn .moon { display: none; }
-}
 @media (max-width: 380px) { .theme-btn { margin-inline-start: 0; } .lang-btn { margin-inline-start: 2px; } }
 
 /* The demo clock, under the store's try-it button */

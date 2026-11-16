@@ -25,13 +25,9 @@
     else set(next);
   });
 
-  // Night mode: follows the device until the visitor picks one, then remembers the choice.
+  // Night mode: day mode by default; the visitor's pick is remembered.
   var themeBtn = document.getElementById("theme");
-  var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
-  function isDark() {
-    var t = root.getAttribute("data-theme");
-    return t ? t === "dark" : darkQuery.matches;
-  }
+  function isDark() { return root.getAttribute("data-theme") === "dark"; }
   function label() {
     var replayName = root.lang === "en" ? "Replay the chat" : "إعادة تشغيل المحادثة";
     document.querySelectorAll(".chat-replay").forEach(function (b) { b.setAttribute("aria-label", replayName); });
@@ -48,7 +44,6 @@
       if (document.startViewTransition && !calm) document.startViewTransition(apply);
       else apply();
     });
-    if (darkQuery.addEventListener) darkQuery.addEventListener("change", label);
   }
 
   document.querySelectorAll("[data-mostaql]").forEach(function (link) {
